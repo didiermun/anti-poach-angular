@@ -9,7 +9,10 @@ import { ReportCardComponent } from './report-card/report-card.component';
 import { HomeComponent } from './home/home.component';
 import { ReportViewComponent } from './report-view/report-view.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
-
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +20,16 @@ import { TopNavComponent } from './top-nav/top-nav.component';
     ReportCardComponent,
     HomeComponent,
     ReportViewComponent,
-    TopNavComponent
+    TopNavComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
