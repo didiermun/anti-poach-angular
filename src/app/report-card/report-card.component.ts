@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import {Patrouille} from '../../types/patrouille'
 
 @Component({
   selector: 'app-report-card',
@@ -8,7 +9,21 @@ import { Component, OnInit } from '@angular/core';
 export class ReportCardComponent implements OnInit {
 
   constructor() { }
-
+  @Input()  
+  size: Patrouille = {
+    date: new Date,
+    id: "didier",
+    type: "",
+    sector: 0,
+    family: "",
+    path: "",
+    composition: "",
+    nTeamMembers: 6,
+    names: [""],
+    teamLeader: "",
+    gpsNO: 2,
+    feuilleNO: 2,
+  };
   ngOnInit(): void {
   }
 
