@@ -40,8 +40,8 @@ export class HomeComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]> | undefined;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  fruits: string[] = ['Today'];
+  allFruits: string[] = ['Yesterday', 'This week', 'This month', 'Last Year', 'Last July'];
 
   @ViewChild('fruitInput')
   fruitInput!: ElementRef<HTMLInputElement>;

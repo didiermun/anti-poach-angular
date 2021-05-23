@@ -1,8 +1,8 @@
 <app-top-nav></app-top-nav>
-        <div class="maindiv">
-                <div class="w-full bg-white">
+        <div class="maindiv mx-6">
+                <div class="search bg-white rounded px-4 py-2 ml-5 shadow-lg">
                         <mat-form-field class="example-chip-list">
-                                <mat-label>Favorite Fruits</mat-label>
+                                <mat-label>Enter keyword to search</mat-label>
                                 <mat-chip-list #chipList aria-label="Fruit selection">
                                   <mat-chip
                                     *ngFor="let fruit of fruits"
@@ -13,7 +13,7 @@
                                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                                   </mat-chip>
                                   <input
-                                    placeholder="New fruit..."
+                                    placeholder="New Keyword..."
                                     #fruitInput
                                     [formControl]="fruitCtrl"
                                     [matAutocomplete]="auto"

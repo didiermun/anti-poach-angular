@@ -2,3 +2,10 @@
 .maindiv {
 		overflow-x: hidden;
 	}
+	.example-chip-list {
+		width: 100%;
+	}
+
+	.search{
+		width: 97%;
+	}

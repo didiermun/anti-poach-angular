@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +14,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatIconModule} from '@angular/material/icon';
+import { NewReportComponent } from './new-report/new-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +26,7 @@ import {MatSelectModule} from '@angular/material/select';
     HomeComponent,
     ReportViewComponent,
     TopNavComponent,
+    NewReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,12 @@ import {MatSelectModule} from '@angular/material/select';
     MatCardModule,
     MatDividerModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
