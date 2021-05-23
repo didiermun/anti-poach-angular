@@ -33,7 +33,7 @@ interface Report{
 })
 export class NewReportComponent implements OnInit {
 
-  report: Report ={
+  report: any ={
     nTeamMembers: 0,
     composition: '',
     date: new Date(),
@@ -46,19 +46,27 @@ export class NewReportComponent implements OnInit {
     type: '',
     teamLeader: '',
   };
-
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required]
+    firstCtrl: ['', Validators.required],
+    composition: ['',Validators.required],
+    date: [new Date(),Validators.required],
+    sector: ['',Validators.required],
+    family: ['',Validators.required],
+    path: ['',Validators.required],
+    gpsNO: ['',Validators.required],
+    feuilleNO: ['',Validators.required],
+    type: ['',Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required]
+   teamLeader: ['', Validators.required],
+   nTeamMembers: ['',Validators.required],
+   names: [[],Validators.required]
   });
   thirdFormGroup = this._formBuilder.group({
     thirdCtrl: ['', Validators.required]
   });
   stepperOrientation: Observable<StepperOrientation>;
 
-  form: FormGroup;
   foods: Types[] = [
     {value: 'ROUTINE', viewValue: 'ROUTINE'},
     {value: 'CHOC', viewValue: 'CHOC'},
@@ -99,8 +107,6 @@ export class NewReportComponent implements OnInit {
     {value: 'Pablo', viewValue: 'Pablo'},
     {value: 'Kubona', viewValue: 'Kubona'},
   ];
-
-  foodControl = new FormControl();
   visible = true;
   selectable = true;
   removable = true;
@@ -152,9 +158,6 @@ export class NewReportComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
-      this.form = new FormGroup({
-        food: this.foodControl,
-      });
 
       this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
         startWith(null),
