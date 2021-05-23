@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -18,6 +17,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
 import { NewReportComponent } from './new-report/new-report.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,8 @@ import { NewReportComponent } from './new-report/new-report.component';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatStepperModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

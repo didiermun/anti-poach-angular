@@ -1,1 +1,61 @@
-<p>new-report works!</p>
+<app-top-nav></app-top-nav>
+
+<div class="mx-10">
+    <p class="text-center font-semibold text-xl">Nouveau Rapport</p>
+    <!-- <ng-container [ngSwitch]="stepperOrientation | async">
+        <div *ngSwitchCase="'horizontal'">Make your screen smaller to see a vertical stepper</div>
+        <div *ngSwitchCase="'vertical'">Make your screen larger to see a horizontal stepper</div>
+    </ng-container> -->
+      
+      <mat-stepper
+        class="example-stepper"
+        [orientation]="(stepperOrientation | async)!">
+        <mat-step [stepControl]="firstFormGroup" label="INFORMATIONS DE PATROUILLE">
+          <form [formGroup]="firstFormGroup">
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext class="bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" label="TYPE DE PATROUILLE">
+          <form [formGroup]="secondFormGroup">
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                     required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Back</button>
+              <button mat-button matStepperNext class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup" label="INFORMATIONS SUR LES MEMBRES DE L'ÉQUIPE">
+          <form [formGroup]="thirdFormGroup">
+            <mat-form-field>
+              <mat-label>Phone number</mat-label>
+              <input matInput formControlName="thirdCtrl" placeholder="Ex. 12345678" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Back</button>
+                <button mat-button matStepperNext class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Next</button>
+              </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>DONE AND SUBMIT</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <div>
+                <button mat-button matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Back</button>
+                <button mat-button matStepperNext class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Submit</button>
+              </div>
+          </div>
+        </mat-step>
+      </mat-stepper>
+      
+</div>
