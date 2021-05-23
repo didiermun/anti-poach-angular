@@ -12,6 +12,19 @@ interface Types {
   value: string;
   viewValue: string;
 }
+interface Report{
+  date: Date;
+  sector: number;
+  composition: string | undefined;
+  family: string | undefined;
+  path: string | undefined;
+  gpsNO: string | undefined;
+  feuilleNO: string | undefined;
+  type: string | undefined;
+  teamLeader: string | undefined;
+  nTeamMembers: number | undefined;
+  names: string[] | undefined;
+}
 
 @Component({
   selector: 'app-new-report',
@@ -19,6 +32,20 @@ interface Types {
   styleUrls: ['./new-report.component.css']
 })
 export class NewReportComponent implements OnInit {
+
+  report: Report ={
+    nTeamMembers: 0,
+    composition: '',
+    date: new Date(),
+    names:[],
+    sector: 0,
+    family: '',
+    path: '',
+    gpsNO: '',
+    feuilleNO: '',
+    type: '',
+    teamLeader: '',
+  };
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required]
@@ -81,6 +108,7 @@ export class NewReportComponent implements OnInit {
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]> | undefined;
   fruits: string[] = [];
+  teamLeader: string | undefined;
   allFruits: string[] = ['Didier Munezero', 'Donart Aime', 'Ukwizagira Froincois', 'Healer Gakstital', 'Cyuzuzo Zodiac'];
 
   @ViewChild('fruitInput')
