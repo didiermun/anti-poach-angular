@@ -19,6 +19,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { NewReportComponent } from './new-report/new-report.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,9 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     MatIconModule,
     MatStepperModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

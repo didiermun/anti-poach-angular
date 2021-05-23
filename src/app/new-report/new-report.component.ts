@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {StepperOrientation} from '@angular/material/stepper';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+
+interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-new-report',
@@ -23,9 +28,22 @@ export class NewReportComponent implements OnInit {
   });
   stepperOrientation: Observable<StepperOrientation>;
 
+  form: FormGroup;
+  foods: Food[] = [
+    {value: 'ROUTINE', viewValue: 'ROUTINE'},
+    {value: 'CHOC', viewValue: 'CHOC'},
+    {value: 'SOUS_TENTE', viewValue: 'SOUS TENTE'},
+    {value: 'MIXTE', viewValue: 'MIXTE'},
+    {value: 'TRACKING', viewValue: 'TRACKING'}
+  ];
+
+  foodControl = new FormControl();
   constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
+      this.form = new FormGroup({
+        food: this.foodControl,
+      });
   }
 
   ngOnInit(): void {
