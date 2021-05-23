@@ -12,6 +12,9 @@ module.exports = {
     },
     darkMode: 'class', // or 'media' or 'class'
     theme: {
+      fontFamily: {
+        'narrow': ['PT Sans Narrow'],
+       },
       extend: {},
     },
     variants: {

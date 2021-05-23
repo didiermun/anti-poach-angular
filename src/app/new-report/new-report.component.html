@@ -28,19 +28,19 @@
                 </mat-select>
               </mat-form-field>
               <mat-form-field appearance="fill" class="col-span-3">
-                <mat-label>Type De Patruille</mat-label>
+                <mat-label>Secteur</mat-label>
                 <mat-select [formControl]="foodControl" name="food">
                   <mat-option>NONE</mat-option>
-                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                  <mat-option *ngFor="let food of sectors" [value]="food.value">
                     {{food.viewValue}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field appearance="fill" class="col-span-3">
-                <mat-label>Type De Patruille</mat-label>
+                <mat-label>Groupe De Gorille</mat-label>
                 <mat-select [formControl]="foodControl" name="food">
                   <mat-option>NONE</mat-option>
-                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                  <mat-option *ngFor="let food of families" [value]="food.value">
                     {{food.viewValue}}
                   </mat-option>
                 </mat-select>
@@ -50,39 +50,72 @@
                 <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
               </mat-form-field>
 
-              <mat-form-field appearance="fill" class="col-span-3">
-                <mat-label>Type De Patruille</mat-label>
+              <mat-form-field appearance="fill" class="bg-white col-span-3">
+                <mat-label>Composition De Patrouille</mat-label>
                 <mat-select [formControl]="foodControl" name="food">
                   <mat-option>NONE</mat-option>
-                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                  <mat-option *ngFor="let food of compositions" [value]="food.value">
                     {{food.viewValue}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field class="col-span-3">
                 <mat-label>GPS No</mat-label>
-                <input type="text" matInput  placeholder="Ex. pat@example.com">
+                <input type="text" matInput  placeholder="5432.4">
                 
               </mat-form-field>
               <mat-form-field class="col-span-3">
                 <mat-label>Fueille No</mat-label>
-                <input type="text" matInput  placeholder="Ex. pat@example.com">
+                <input type="text" matInput  placeholder="432342">
                 
               </mat-form-field>
               
             <div class="col-span-6">
-              <button mat-button matStepperNext class="bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Next</button>
+              <button mat-button matStepperNext class="bg-green-400 px-8 py-1.5 text-white text-lg focus:outline-none rounded-none font-narrow">Next</button>
             </div>
           </form>
         </mat-step>
 
         <mat-step [stepControl]="secondFormGroup" label="INFORMATIONS SUR LES MEMBRES DE L'ÉQUIPE">
-          <form [formGroup]="secondFormGroup">
-            <!-- <mat-form-field>
-              <mat-label>Phone number</mat-label>
-              <input matInput formControlName="sec" placeholder="Ex. 12345678" required>
-            </mat-form-field> -->
-            <div>
+          <form [formGroup]="secondFormGroup" class="mt-4 grid grid-cols-6 gap-2 mx-20">
+            <mat-form-field class="col-span-3">
+                <mat-label>Number of Team members</mat-label>
+                <input type="number" matInput  placeholder="432342">
+            </mat-form-field>
+            <mat-form-field class="col-span-3">
+                <mat-label>Team leader name</mat-label>
+                <input type="text" matInput  placeholder="Ex. Didier Munezero">
+            </mat-form-field>
+            <!-- <div class="search bg-white rounded px-4 py-2 ml-5 shadow-lg col-span-6"> -->
+                <mat-form-field class="example-chip-list" class="col-span-6">
+                        <mat-label>Enter members names separated with comma</mat-label>
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                          <mat-chip
+                            *ngFor="let fruit of fruits"
+                            [selectable]="selectable"
+                            [removable]="removable"
+                            (removed)="remove(fruit)">
+                            {{fruit}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                          </mat-chip>
+                          <input
+                            placeholder="New Name..."
+                            #fruitInput
+                            [formControl]="fruitCtrl"
+                            [matAutocomplete]="auto"
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                          <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                            {{fruit}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                      
+        <!-- </div> -->
+            <div class="col-span-6">
                 <button mat-button matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Back</button>
                 <button mat-button matStepperNext class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Next</button>
               </div>
@@ -90,8 +123,8 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>DONE AND SUBMIT</ng-template>
-          <p>You are now done.</p>
-          <div>
+          <p class="text-center text-xl">You are now done.</p>
+          <div class="flex flex-col mx-auto items-center">
             <div>
                 <button mat-button matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Back</button>
                 <button mat-button class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Submit</button>
