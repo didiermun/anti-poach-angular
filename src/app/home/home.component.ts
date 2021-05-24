@@ -1,21 +1,40 @@
 import {Patrouille} from '../../types/patrouille'
 
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, ViewChild, OnInit} from '@angular/core';
+import {Component, ElementRef,OnDestroy, ViewChild, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { Apollo, gql } from 'apollo-angular';
+
+
+
+const GET_PATROUILLES = gql`
+  query patrouilles {
+    patrouilles {
+      family
+      path
+      id
+      date
+    }
+  }
+`;
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,OnDestroy  {
+  loading!: boolean;
+  patrouilles: any;
 
-  constructor() {
+  private querySubscription!: Subscription;
+
+  constructor(private apollo: Apollo) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
         startWith(null),
         map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
@@ -41,7 +60,7 @@ export class HomeComponent implements OnInit {
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]> | undefined;
   fruits: string[] = ['Today'];
-  allFruits: string[] = ['Yesterday', 'This week', 'This month', 'Last Year', 'Last July'];
+  allFruits: string[] = ['Yesterday', 'This week', 'This month'];
 
   @ViewChild('fruitInput')
   fruitInput!: ElementRef<HTMLInputElement>;
@@ -82,6 +101,18 @@ export class HomeComponent implements OnInit {
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
   ngOnInit(): void {
+    this.querySubscription = this.apollo.watchQuery<any>({
+      query: GET_PATROUILLES
+    })
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        console.log(data);
+        this.loading = loading;
+        this.patrouilles = data.patrouilles;
+      });
+  }
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
   }
 
 }
