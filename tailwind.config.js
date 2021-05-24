@@ -15,6 +15,15 @@ module.exports = {
       fontFamily: {
         'narrow': ['PT Sans Narrow'],
        },
+       screens: {
+        'sm':'640px',
+        'md':'768px',
+        'minMD': '700px',
+        'minLG':'1010px',
+        'lg':'1024px',
+        'xl':'1280px',
+        '2xl':'1536px'
+      },
       extend: {},
     },
     variants: {

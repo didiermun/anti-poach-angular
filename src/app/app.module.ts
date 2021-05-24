@@ -16,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { NewReportComponent } from './new-report/new-report.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
@@ -24,6 +25,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PatrouilleComponent } from './patrouille/patrouille.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +57,11 @@ import { PatrouilleComponent } from './patrouille/patrouille.component';
     MatDatepickerModule,
     MatNativeDateModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

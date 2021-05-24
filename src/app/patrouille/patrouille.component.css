@@ -1,0 +1,17 @@
+@media (min-width: 1010px) { 
+		.pat{
+			width: 34%;
+			height: 85vh;
+			overflow-y: auto;
+		}
+		.records{
+			width: 66%;
+		}
+		.outer-div{
+			display: flex;
+		}
+	 }
+    ::-webkit-scrollbar {
+    display: none;
+}
+

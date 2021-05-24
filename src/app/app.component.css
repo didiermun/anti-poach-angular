@@ -1,3 +1,6 @@
 .outer-block{
     background: #f0f2f5;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    
 }
