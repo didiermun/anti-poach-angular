@@ -21,6 +21,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatStepperModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
