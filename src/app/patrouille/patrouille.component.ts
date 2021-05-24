@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild,AfterViewInit} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-patrouille',
   templateUrl: './patrouille.component.html',
@@ -9,12 +10,17 @@ import {MatTableDataSource} from '@angular/material/table';
 
 export class PatrouilleComponent implements OnInit,AfterViewInit  {
  
-  constructor() { }
+  constructor(private route: ActivatedRoute,) { }
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        console.log(params['patrouilleId']);
+      }
+    );
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
