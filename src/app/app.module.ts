@@ -23,6 +23,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PatrouilleComponent } from './patrouille/patrouille.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReportViewComponent,
     TopNavComponent,
     NewReportComponent,
+    PatrouilleComponent,
   ],
   imports: [
     BrowserModule,
