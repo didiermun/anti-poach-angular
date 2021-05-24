@@ -10,9 +10,9 @@ export class ReportCardComponent implements OnInit {
 
   constructor() { }
   @Input()  
-  size: Patrouille = {
-    date: new Date,
-    id: "didier",
+  patrouille: Patrouille = {
+    date: undefined,
+    id: "",
     type: "",
     sector: 0,
     family: "",
