@@ -1,16 +1,56 @@
-import { Component, OnInit, ViewChild,AfterViewInit} from '@angular/core';
+import { Component, OnInit,OnDestroy, ViewChild,AfterViewInit} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Apollo, gql } from 'apollo-angular';
+
+
+const GET_PATROUILLES = gql`
+  query patrouille($id: ID!) {
+    patrouille(id: $id) {
+      records{
+        id
+        p_id
+        time
+        wpt
+        easting
+        northing
+        observation
+        otype
+        number
+        sitename
+        remarks
+      }
+      patrouille{
+        id
+        date
+        type
+        sector
+        family
+        path
+        composition
+        nTeamMembers
+        teamLeader
+        gpsNO
+        feuilleNO
+        names
+      }
+    }
+  }
+`;
 @Component({
   selector: 'app-patrouille',
   templateUrl: './patrouille.component.html',
   styleUrls: ['./patrouille.component.css']
 })
 
-export class PatrouilleComponent implements OnInit,AfterViewInit  {
+export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
  
-  constructor(private route: ActivatedRoute,) { }
+  constructor(private route: ActivatedRoute,private apollo: Apollo) { }
+  loading!: boolean;
+  patrouille: any;
+  private querySubscription!: Subscription;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
@@ -18,9 +58,24 @@ export class PatrouilleComponent implements OnInit,AfterViewInit  {
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
-        console.log(params['patrouilleId']);
+        // console.log();
+        this.querySubscription = this.apollo.watchQuery<any>({
+          query: GET_PATROUILLES,
+          variables: {
+            id: params['patrouilleId'],
+          },
+        })
+          .valueChanges
+          .subscribe(({ data, loading }) => {
+            console.log(data);
+            this.loading = loading;
+            this.patrouille = data.patrouille;
+          });
       }
     );
+  }
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

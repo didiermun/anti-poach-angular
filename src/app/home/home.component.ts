@@ -39,20 +39,6 @@ export class HomeComponent implements OnInit,OnDestroy  {
         startWith(null),
         map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
   }
-  size: Patrouille = {
-    date: new Date,
-    id: "didier",
-    type: "",
-    sector: 0,
-    family: "",
-    path: "",
-    composition: "",
-    nTeamMembers: 6,
-    names: [""],
-    teamLeader: "",
-    gpsNO: 2,
-    feuilleNO: 2,
-  };
   visible = true;
   selectable = true;
   removable = true;
