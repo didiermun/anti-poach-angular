@@ -1,5 +1,4 @@
 <app-top-nav></app-top-nav>
-md
 <div class="mx-0 md:mx-10">
     <p class="text-center font-semibold text-xl">Nouveau Rapport</p>
     <!-- <ng-container [ngSwitch]="stepperOrientation | async">
@@ -8,7 +7,8 @@ md
     </ng-container> -->
       
       <mat-stepper
-        class=""
+        class="" 
+        [linear]="isLinear"
         [orientation]="(stepperOrientation | async)!">
         <mat-step [stepControl]="firstFormGroup" label="INFORMATIONS DE PATROUILLE">
           <form [formGroup]="firstFormGroup" class="mt-4 grid grid-cols-6 gap-2 mx-4 md:mx-20">
@@ -127,7 +127,7 @@ md
           <div class="flex flex-col mx-auto items-center">
             <div>
                 <button mat-button matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Back</button>
-                <button mat-button class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Submit</button>
+                <button (click)="submit()" class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Submit</button>
               </div>
           </div>
         </mat-step>

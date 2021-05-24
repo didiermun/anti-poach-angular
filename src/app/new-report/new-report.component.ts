@@ -47,7 +47,6 @@ export class NewReportComponent implements OnInit {
     teamLeader: '',
   };
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
     composition: ['',Validators.required],
     date: [new Date(),Validators.required],
     sector: ['',Validators.required],
@@ -60,13 +59,11 @@ export class NewReportComponent implements OnInit {
   secondFormGroup = this._formBuilder.group({
    teamLeader: ['', Validators.required],
    nTeamMembers: ['',Validators.required],
-   names: [[],Validators.required]
   });
   thirdFormGroup = this._formBuilder.group({
     thirdCtrl: ['', Validators.required]
   });
   stepperOrientation: Observable<StepperOrientation>;
-
   foods: Types[] = [
     {value: 'ROUTINE', viewValue: 'ROUTINE'},
     {value: 'CHOC', viewValue: 'CHOC'},
@@ -107,6 +104,7 @@ export class NewReportComponent implements OnInit {
     {value: 'Pablo', viewValue: 'Pablo'},
     {value: 'Kubona', viewValue: 'Kubona'},
   ];
+  isLinear = true;
   visible = true;
   selectable = true;
   removable = true;
@@ -154,6 +152,11 @@ export class NewReportComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  }
+  submit(){
+    console.log(this.fruits);
+    console.log(this.firstFormGroup.value)
+    console.log(this.secondFormGroup.value)
   }
   constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
