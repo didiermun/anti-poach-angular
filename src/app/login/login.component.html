@@ -5,11 +5,21 @@
           <p class="text-gray-800 text-3xl font-medium">S'identifier</p>
           <p class="mt-2 text-gray-600 text-md">Pour commencer à rédiger de nouveaux rapports et à ajouter des enregistrements aux rapports existants.</p>
         </div>
-        <div class="mt-4 border-b-2 border-[#ff3e00]">
-            <input type="text" class="uppercase w-full h-12 border-none focus:outline-none focus:ring-0 " placeholder="Enter code" />
+        <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  
+          <div class="form">
+            <mat-form-field color="primary">
+              <input matInput #input type="text" class="form-control" placeholder="Code" [(ngModel)]="data" name="time" required minlength="7" >
+              <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
           </div>
+          <!-- <div mat-dialog-actions>
+            <button mat-button color="send" type="submit" [disabled]="!formControl.valid" class="focus:outline-none" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+            <button mat-button  tabindex="-1" class="focus:outline-none">Cancel</button>
+          </div> -->
+        </form>  
         <div class="flex justify-end mt-4">
-            <button class="text-center w-1/2 bg-[#ff3e00] rounded-md text-white py-3 font-medium focus:outline-none">Continuer</button>
+            <button class="text-center w-1/2 bg-[#26A69A] rounded-md text-white py-3 font-medium focus:outline-none" [disabled]="!formControl.valid" (click)="confirmAdd()">Continuer</button>
         </div>
       </div>
     </form>
