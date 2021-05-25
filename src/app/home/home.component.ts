@@ -127,19 +127,3 @@ export class HomeComponent implements OnInit,OnDestroy  {
 
 }
 
-
-@Component({
-  selector: 'dialog-dialog',
-  templateUrl: 'delete-dialog.component.html',
-})
-export class DeleteDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DeleteDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: boolean) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-}
