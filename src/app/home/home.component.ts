@@ -1,7 +1,9 @@
 import {Patrouille} from '../../types/patrouille'
 
+
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef,OnDestroy, ViewChild, OnInit} from '@angular/core';
+import {Component, Inject,ElementRef,OnDestroy, ViewChild, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
@@ -31,13 +33,24 @@ const GET_PATROUILLES = gql`
 export class HomeComponent implements OnInit,OnDestroy  {
   loading!: boolean;
   patrouilles: any;
-
+  delete!: boolean;
   private querySubscription!: Subscription;
 
-  constructor(private apollo: Apollo) {
+  constructor(private apollo: Apollo,public dialog: MatDialog) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
         startWith(null),
         map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DeleteDialog, {
+      width: '330px',
+      data: {animal: this.delete}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.delete = result;
+    });
   }
   visible = true;
   selectable = true;
@@ -99,6 +112,23 @@ export class HomeComponent implements OnInit,OnDestroy  {
   }
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
+  }
+
+}
+
+
+@Component({
+  selector: 'dialog-dialog',
+  templateUrl: 'delete-dialog.component.html',
+})
+export class DeleteDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DeleteDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: boolean) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

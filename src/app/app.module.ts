@@ -5,7 +5,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
-import { ReportCardComponent } from './report-card/report-card.component';
 import { HomeComponent } from './home/home.component';
 import { ReportViewComponent } from './report-view/report-view.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
@@ -28,11 +27,11 @@ import { PatrouilleComponent } from './patrouille/patrouille.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ReportCardComponent,
     HomeComponent,
     ReportViewComponent,
     TopNavComponent,
@@ -61,7 +60,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatGridListModule,
     MatTableModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
