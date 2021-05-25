@@ -62,13 +62,13 @@ export class NewReportComponent implements OnInit {
     sector: ['',Validators.required],
     family: ['',Validators.required],
     path: ['',Validators.required],
-    gpsNO: ['',Validators.required],
-    feuilleNO: ['',Validators.required],
+    gpsNO: [0,Validators.required],
+    feuilleNO: [0,Validators.required],
     type: ['',Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
    teamLeader: ['', Validators.required],
-   nTeamMembers: ['',Validators.required],
+   nTeamMembers: [0,Validators.required],
   });
   thirdFormGroup = this._formBuilder.group({
     thirdCtrl: ['', Validators.required]
@@ -164,13 +164,14 @@ export class NewReportComponent implements OnInit {
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
   submit(){
-    console.log(this.fruits);
-    console.log(this.firstFormGroup.value)
-    console.log(this.secondFormGroup.value)
+    let data = {...this.secondFormGroup.value,...this.firstFormGroup.value, names: this.fruits}
+    data.date = data.date.toString();
+    data.sector = parseInt(data.sector);
+    console.log(data);
     this.apollo.mutate({
       mutation: NEW_PATROUILLE,
       variables: {
-        ...this.secondFormGroup.value,...this.firstFormGroup.value, name: this.fruits
+        data: data
       }
     }).subscribe(({ data }) => {
       console.log('got data', data);
