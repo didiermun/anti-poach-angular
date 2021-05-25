@@ -62,14 +62,14 @@
         </mat-form-field>
       </div>
       <mat-form-field class="example-chip-list">
-        <mat-label>Favorite Fruits</mat-label>
-        <mat-chip-list #chipList aria-label="Fruit selection">
-          <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                   [removable]="removable" (removed)="remove(fruit)">
-            {{fruit.name}}
+        <mat-label>Remarks</mat-label>
+        <mat-chip-list #chipList aria-label="remark selection">
+          <mat-chip *ngFor="let remark of remarks" [selectable]="selectable"
+                   [removable]="removable" (removed)="remove(remark)">
+            {{remark.text}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input placeholder="New fruit..."
+          <input placeholder="New Remark..."
                  [matChipInputFor]="chipList"
                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                  [matChipInputAddOnBlur]="addOnBlur"

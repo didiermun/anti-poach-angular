@@ -1,6 +1,12 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {FormControl, Validators} from '@angular/forms';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
+
+export interface Remark {
+  text: string;
+}
 
 @Component({
   selector: 'app-new-record',
@@ -22,6 +28,32 @@ export class NewRecordComponent implements OnInit {
         this.formControl.hasError('email') ? 'Not a valid email' :
           '';
     }
+    visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  remarks: Remark[] = [];
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our remark
+    if (value) {
+      this.remarks.push({text: value});
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(remark: Remark): void {
+    const index = this.remarks.indexOf(remark);
+
+    if (index >= 0) {
+      this.remarks.splice(index, 1);
+    }
+  }
   
     submit() {
     }
