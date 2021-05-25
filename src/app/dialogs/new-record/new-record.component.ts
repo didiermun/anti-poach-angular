@@ -24,7 +24,6 @@ export class NewRecordComponent implements OnInit {
     }
   
     submit() {
-    // emppty stuff
     }
   
     onNoClick(): void {

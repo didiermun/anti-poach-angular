@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
+import {NewRecordComponent} from '../dialogs/new-record/new-record.component';
 
 export interface DialogData {
   animal: string;
@@ -58,11 +59,20 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
   private querySubscription!: Subscription;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  addNew() {
+    const dialogRef = this.dialog.open(NewRecordComponent, {
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+     console.log("result: "+ result);
+    });
+  }
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
-        // console.log();
         this.querySubscription = this.apollo.watchQuery<any>({
           query: GET_PATROUILLES,
           variables: {

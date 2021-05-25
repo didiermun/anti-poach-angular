@@ -4,49 +4,81 @@
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
   
       <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
+        <mat-form-field color="primary">
+          <input matInput #input type="time" class="form-control" placeholder="Time" [(ngModel)]="data.time" name="time" required >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
   
       <!--Textarea for demo purposes-->
       <div class="form">
-        <mat-form-field color="accent">
-          <textarea matInput #input class="form-control" placeholder="Title" [(ngModel)]="data.title" name="title" required ></textarea>
+        <mat-form-field color="primary">
+          <textarea matInput #input class="form-control" placeholder="No wpt" [(ngModel)]="data.wpt" name="wpt" required ></textarea>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
   
       <!--Contains mat-hint for characters count and has maxLengt set-->
       <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #inputstate class="form-control" placeholder="State" [(ngModel)]="data.state" name="state" maxlength="10" required >
+        <mat-form-field color="primary">
+          <input matInput #inputnorthing class="form-control" placeholder="Northing" [(ngModel)]="data.northing" name="northing" maxlength="4" required >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-          <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+          <mat-hint align="end">{{inputnorthing.value?.length || 0}}/4</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="primary">
+          <input matInput #inputeasting class="form-control" placeholder="Easting" [(ngModel)]="data.easting" name="easting" maxlength="4" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-hint align="end">{{inputeasting.value?.length || 0}}/4</mat-hint>
         </mat-form-field>
       </div>
   
       <div class="form">
-        <mat-form-field color="accent">
-          <input matInput placeholder="Url" [(ngModel)]="data.url" name="url">
+        <mat-form-field color="primary">
+          <input matInput #inputnumber placeholder="Nombre" [(ngModel)]="data.number" name="number" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="primary">
+          <input matInput #inputobservation placeholder="Observation" [(ngModel)]="data.observation" name="observation" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
   
       <div class="form">
-        <mat-form-field color="accent">
-          <input matInput placeholder="Created at" [(ngModel)]="data.created_at" name="created_at">
+        <mat-form-field color="primary">
+          <input matInput #inputotype placeholder="Type de Observation" [(ngModel)]="data.otype" name="otype" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
   
       <div class="form">
-        <mat-form-field color="accent">
-          <input matInput placeholder="Updated at" [(ngModel)]="data.updated_at" name="updated_at">
+        <mat-form-field color="primary">
+          <input matInput #inputsitename placeholder="Nom du site" [(ngModel)]="data.sitename" name="sitename" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
+      <mat-form-field class="example-chip-list">
+        <mat-label>Favorite Fruits</mat-label>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                   [removable]="removable" (removed)="remove(fruit)">
+            {{fruit.name}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="New fruit..."
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="addOnBlur"
+                 (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field>
   
       <div mat-dialog-actions>
-        <button mat-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+        <button mat-button color="send" type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
         <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
       </div>
     </form>
