@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { ReportViewComponent } from './report-view/report-view.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
@@ -33,7 +32,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ReportViewComponent,
     TopNavComponent,
     NewReportComponent,
     PatrouilleComponent,
