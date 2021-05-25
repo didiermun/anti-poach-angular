@@ -5,6 +5,11 @@ import { Subscription } from 'rxjs';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 const GET_PATROUILLES = gql`
   query patrouille($id: ID!) {
     patrouille(id: $id) {
@@ -45,27 +50,14 @@ const GET_PATROUILLES = gql`
 })
 
 export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
+
  
   constructor(public dialog: MatDialog,private route: ActivatedRoute,private apollo: Apollo) { }
   loading!: boolean;
   patrouille: any;
-  delete!: boolean;
   private querySubscription!: Subscription;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DeleteDialog, {
-      width: '70%',
-      data: {animal: this.delete}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.delete = result;
-    });
-  }
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -124,23 +116,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
   {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
 ];
-
-@Component({
-  selector: 'new-dialog',
-  templateUrl: 'new.component.html',
-})
-export class DeleteDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DeleteDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: boolean) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-}
-
 
 
 

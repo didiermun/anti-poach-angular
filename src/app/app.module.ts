@@ -27,6 +27,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
+import { NewRecordComponent } from './dialogs/new-record/new-record.component';
+import { NewEditComponent } from './dialogs/new-edit/new-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     TopNavComponent,
     NewReportComponent,
     PatrouilleComponent,
+    NewRecordComponent,
+    NewEditComponent,
   ],
   imports: [
     BrowserModule,
