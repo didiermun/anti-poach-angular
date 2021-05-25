@@ -16,7 +16,6 @@ export class DeletePatrouilleComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DeletePatrouilleComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
     public confirmAdd(): void {
-      console.log(this.data);
     }
   ngOnInit(): void {
   }

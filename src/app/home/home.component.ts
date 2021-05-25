@@ -1,6 +1,5 @@
 import {Patrouille} from '../../types/patrouille'
 
-
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component, Inject,ElementRef,OnDestroy, ViewChild, OnInit} from '@angular/core';
@@ -26,6 +25,15 @@ const GET_PATROUILLES = gql`
   }
 `;
 
+const DELETE_PATROUILLES = gql`
+  mutation deletePatrouille($id: ID!) {
+    deletePatrouille(id: $id) {
+      id
+      family
+    }
+  }
+`;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -43,11 +51,23 @@ export class HomeComponent implements OnInit,OnDestroy  {
         startWith(null),
         map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
   }
-  openDialog(): void {
+  openDialog(id: string): void {
     const dialogRef = this.dialog.open(DeletePatrouilleComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
-     console.log("result: "+ result);
+     if(result == "1"){
+       console.log("id :"+ id);
+      this.apollo.mutate({
+        mutation: DELETE_PATROUILLES,
+        variables: {
+          id: id
+        }
+      }).subscribe(({ data }) => {
+        console.log('got data', data);
+      },(error) => {
+        console.log('there was an error sending the query', error);
+      });
+     }
     });
   }
   refresh() {
@@ -101,15 +121,6 @@ export class HomeComponent implements OnInit,OnDestroy  {
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
   ngOnInit(): void {
-    // this.querySubscription = this.apollo.watchQuery<any>({
-    //   query: GET_PATROUILLES
-    // })
-    //   .valueChanges
-    //   .subscribe(({ data, loading }) => {
-    //     console.log(data);
-    //     this.loading = loading;
-    //     this.patrouilles = data.patrouilles;
-    //   });
     this.patrouilleQuery = this.apollo.watchQuery<any>({
       query: GET_PATROUILLES,
       pollInterval: 500,

@@ -47,7 +47,7 @@
                     <mat-divider></mat-divider>
                     <div class="mt-2">
                       <button  class="w-16 md:w-24 py-1.5 text-white bg-green-400 mx-2 focus:outline-none" routerLink="/patrouille/{{patrouille.id}}">VIEW</button>
-                      <button  class="w-16 md:w-24 py-1.5 text-white bg-[#f74408] mx-2 focus:outline-none mt-2" (click)="openDialog()">DELETE</button>
+                      <button  class="w-16 md:w-24 py-1.5 text-white bg-[#f74408] mx-2 focus:outline-none mt-2" (click)="openDialog(patrouille.id)">DELETE</button>
                     </div>
                   </div>
                 
