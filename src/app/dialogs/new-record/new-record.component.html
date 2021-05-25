@@ -1,5 +1,5 @@
 <div class="container">
-    <h3 mat-dialog-title>Add new Issue</h3>
+    <p class="text-xl font-semibold" mat-dialog-title>Add new record</p>
   
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
   
@@ -78,8 +78,8 @@
       </mat-form-field>
   
       <div mat-dialog-actions>
-        <button mat-button color="send" type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
-        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        <button mat-button color="send" type="submit" [disabled]="!formControl.valid" class="focus:outline-none" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1" class="focus:outline-none">Cancel</button>
       </div>
     </form>
   </div>

@@ -11,6 +11,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { Apollo, QueryRef,gql } from 'apollo-angular';
+import {DeletePatrouilleComponent} from '../dialogs/delete-pat/delete-pat.component';
 
 
 
@@ -43,14 +44,10 @@ export class HomeComponent implements OnInit,OnDestroy  {
         map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(DeleteDialog, {
-      width: '330px',
-      data: {animal: this.delete}
-    });
+    const dialogRef = this.dialog.open(DeletePatrouilleComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.delete = result;
+     console.log("result: "+ result);
     });
   }
   refresh() {

@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {map, startWith} from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -23,6 +24,7 @@ const NEW_PATROUILLE = gql`
   }
 `
 interface Report{
+  id: string;
   date: Date;
   sector: number;
   composition: string | undefined;
@@ -175,12 +177,14 @@ export class NewReportComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       console.log('got data', data);
+      let response: any = data;
+      this.router.navigateByUrl(`/patrouille/${response.newPatrouille.id}`);
     },(error) => {
       console.log('there was an error sending the query', error);
       console.error(error);
     });
   }
-  constructor(private apollo: Apollo,private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
+  constructor(private router: Router,private apollo: Apollo,private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
 
