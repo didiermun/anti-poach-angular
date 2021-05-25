@@ -4,6 +4,8 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import {StepperOrientation} from '@angular/material/stepper';
 import {Observable} from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 import {map, startWith} from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -12,6 +14,14 @@ interface Types {
   value: string;
   viewValue: string;
 }
+
+const NEW_PATROUILLE = gql`
+  mutation newPatrouille($data: NewPatrouille!) {
+    newPatrouille(patrouille: $data) {
+      id
+    }
+  }
+`
 interface Report{
   date: Date;
   sector: number;
@@ -157,8 +167,19 @@ export class NewReportComponent implements OnInit {
     console.log(this.fruits);
     console.log(this.firstFormGroup.value)
     console.log(this.secondFormGroup.value)
+    this.apollo.mutate({
+      mutation: NEW_PATROUILLE,
+      variables: {
+        ...this.secondFormGroup.value,...this.firstFormGroup.value, name: this.fruits
+      }
+    }).subscribe(({ data }) => {
+      console.log('got data', data);
+    },(error) => {
+      console.log('there was an error sending the query', error);
+      console.error(error);
+    });
   }
-  constructor(private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
+  constructor(private apollo: Apollo,private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
 

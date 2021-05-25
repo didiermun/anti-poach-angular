@@ -10,7 +10,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo, QueryRef,gql } from 'apollo-angular';
 
 
 
@@ -32,8 +32,9 @@ const GET_PATROUILLES = gql`
 })
 export class HomeComponent implements OnInit,OnDestroy  {
   loading!: boolean;
-  patrouilles: any;
+  patrouilles: any[] = [];
   delete!: boolean;
+  patrouilleQuery!: QueryRef<any>;
   private querySubscription!: Subscription;
 
   constructor(private apollo: Apollo,public dialog: MatDialog) {
@@ -51,6 +52,9 @@ export class HomeComponent implements OnInit,OnDestroy  {
       console.log('The dialog was closed');
       this.delete = result;
     });
+  }
+  refresh() {
+    this.patrouilleQuery.refetch()
   }
   visible = true;
   selectable = true;
@@ -100,12 +104,22 @@ export class HomeComponent implements OnInit,OnDestroy  {
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
   ngOnInit(): void {
-    this.querySubscription = this.apollo.watchQuery<any>({
-      query: GET_PATROUILLES
-    })
+    // this.querySubscription = this.apollo.watchQuery<any>({
+    //   query: GET_PATROUILLES
+    // })
+    //   .valueChanges
+    //   .subscribe(({ data, loading }) => {
+    //     console.log(data);
+    //     this.loading = loading;
+    //     this.patrouilles = data.patrouilles;
+    //   });
+    this.patrouilleQuery = this.apollo.watchQuery<any>({
+      query: GET_PATROUILLES,
+      pollInterval: 500,
+    });
+    this.querySubscription = this.patrouilleQuery
       .valueChanges
       .subscribe(({ data, loading }) => {
-        console.log(data);
         this.loading = loading;
         this.patrouilles = data.patrouilles;
       });
