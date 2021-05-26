@@ -69,7 +69,6 @@ export class NewRecordComponent implements OnInit {
   
     public confirmAdd(): void {
     let data = {...this.data,remarks:this.remarks};
-    console.log(data);
     this.apollo.mutate({
       mutation: NEW_RECORD,
       variables: {

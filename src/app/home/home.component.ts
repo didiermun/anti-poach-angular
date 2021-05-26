@@ -41,7 +41,7 @@ const DELETE_PATROUILLES = gql`
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit,OnDestroy  {
-  loading!: boolean;
+  loading: boolean = true;
   patrouilles: any[] = [];
   delete!: boolean;
   value!: boolean;

@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { QueryRef,Apollo, gql } from 'apollo-angular';
 import {NewRecordComponent} from '../dialogs/new-record/new-record.component';
+import {LoggedinService} from '../services/loggedin/loggedin.service';
 
 export interface DialogData {
   animal: string;
@@ -53,10 +54,12 @@ const GET_PATROUILLES = gql`
 export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
 
  
-  constructor(public dialog: MatDialog,private route: ActivatedRoute,private apollo: Apollo) { }
-  loading!: boolean;
+  constructor(private logged: LoggedinService,public dialog: MatDialog,private route: ActivatedRoute,private apollo: Apollo) { }
+  loading: boolean = true;
   patrouille: any = {patrouille:{},records:[]};
   patrouilleQuery!: QueryRef<any>;
+  subscription: any;
+  isloggedIn: boolean = false;
   private querySubscription!: Subscription;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -91,6 +94,14 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
         this.loading = loading;
         this.patrouille = data.patrouille;
     });
+      }
+    );
+    this.subscription = this.logged.getLogged().subscribe(
+      res => {
+        this.isloggedIn = res.value;
+      },
+      err => {
+        console.error(`An error occurred: ${err.message}`);
       }
     );
   }
