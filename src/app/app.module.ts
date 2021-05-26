@@ -29,6 +29,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NewRecordComponent } from './dialogs/new-record/new-record.component';
 import { NewEditComponent } from './dialogs/new-edit/new-edit.component';
+import {MatMenuModule} from '@angular/material/menu';
 import { DeletePatrouilleComponent } from './dialogs/delete-pat/delete-pat.component';
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { DeletePatrouilleComponent } from './dialogs/delete-pat/delete-pat.compo
     MatFormFieldModule,
     MatAutocompleteModule,
     FormsModule,
+    MatMenuModule,
     ReactiveFormsModule,
     MatIconModule,
     MatStepperModule,

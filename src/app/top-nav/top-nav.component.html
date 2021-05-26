@@ -22,9 +22,14 @@
                 <span class="text-white uppercase font-semibold text-center -mb-1">Nouveau</span><span class="text-white text-center mt-0">Rapport</span> </a>
             </div>
             <div class="mx-2 py-2 rounded px-4 cursor-pointer w-18">
-              <button type="button" class="flex text-sm rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+              <button [matMenuTriggerFor]="menu"  type="button" class="flex text-sm rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                 <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
               </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item class="focus:outline-none" *ngIf="!isloggedIn" routerLink="/login">Login</button>
+                <button mat-menu-item class="focus:outline-none" *ngIf="isloggedIn" routerLink="/dashboard">Dashboard</button>
+                <button mat-menu-item class="focus:outline-none" *ngIf="isloggedIn" (click)="logout()">Logout</button>
+              </mat-menu>
             </div>
           </div>
         </div>
