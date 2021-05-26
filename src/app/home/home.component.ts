@@ -132,7 +132,7 @@ export class HomeComponent implements OnInit,OnDestroy  {
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.patrouilles = data.patrouilles;
-      });
+    });
 
       this.subscription = this.logged.getLogged().subscribe(
         res => {

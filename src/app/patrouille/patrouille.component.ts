@@ -1,10 +1,10 @@
-import { Inject,Component, OnInit,OnDestroy, ViewChild,AfterViewInit} from '@angular/core';
+import { Component, OnInit,OnDestroy, ViewChild,AfterViewInit} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Apollo, gql } from 'apollo-angular';
+import {MatDialog} from '@angular/material/dialog';
+import { ActivatedRoute, Params } from '@angular/router';
+import { QueryRef,Apollo, gql } from 'apollo-angular';
 import {NewRecordComponent} from '../dialogs/new-record/new-record.component';
 
 export interface DialogData {
@@ -56,6 +56,7 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
   constructor(public dialog: MatDialog,private route: ActivatedRoute,private apollo: Apollo) { }
   loading!: boolean;
   patrouille: any = {patrouille:{},records:[]};
+  patrouilleQuery!: QueryRef<any>;
   private querySubscription!: Subscription;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -71,21 +72,25 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
      console.log("result: "+ result);
     });
   }
+  refresh() {
+    this.patrouilleQuery.refetch()
+  }
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
-        this.querySubscription = this.apollo.watchQuery<any>({
+        this.patrouilleQuery = this.apollo.watchQuery<any>({
           query: GET_PATROUILLES,
           variables: {
             id: params['patrouilleId'],
           },
-        })
-          .valueChanges
-          .subscribe(({ data, loading }) => {
-            console.log(data);
-            this.loading = loading;
-            this.patrouille = data.patrouille;
-          });
+          pollInterval: 500,
+        });
+        this.querySubscription = this.patrouilleQuery
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        this.loading = loading;
+        this.patrouille = data.patrouille;
+    });
       }
     );
   }
