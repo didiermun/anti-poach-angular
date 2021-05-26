@@ -64,8 +64,8 @@ export class NewReportComponent implements OnInit {
     sector: ['',Validators.required],
     family: ['',Validators.required],
     path: ['',Validators.required],
-    gpsNO: [0,Validators.required],
-    feuilleNO: [0,Validators.required],
+    gpsNO: [,Validators.required],
+    feuilleNO: [,Validators.required],
     type: ['',Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
