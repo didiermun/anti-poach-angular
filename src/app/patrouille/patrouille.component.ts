@@ -62,6 +62,7 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   addNew() {
+    console.log(this.patrouille.patrouille.id)
     const dialogRef = this.dialog.open(NewRecordComponent, {
       data: { p_id: this.patrouille.patrouille.id}
     });

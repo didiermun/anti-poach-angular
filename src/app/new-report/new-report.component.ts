@@ -168,7 +168,6 @@ export class NewReportComponent implements OnInit {
     let data = {...this.secondFormGroup.value,...this.firstFormGroup.value, names: this.fruits}
     data.date = data.date.toString();
     data.sector = parseInt(data.sector);
-    console.log(data);
     this.apollo.mutate({
       mutation: NEW_PATROUILLE,
       variables: {

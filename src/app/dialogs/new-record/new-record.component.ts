@@ -5,10 +5,6 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { gql,Apollo } from 'apollo-angular';
 
-export interface Remark {
-  text: string;
-}
-
 const NEW_RECORD = gql`
   mutation newRecord($data: NewRecord!) {
     newRecord(record: $data) {
@@ -42,21 +38,21 @@ export class NewRecordComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  remarks: Remark[] = [];
+  remarks: string[] = [];
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our remark
     if (value) {
-      this.remarks.push({text: value});
+      this.remarks.push(value);
     }
 
     // Clear the input value
     event.chipInput!.clear();
   }
 
-  remove(remark: Remark): void {
+  remove(remark: string): void {
     const index = this.remarks.indexOf(remark);
 
     if (index >= 0) {
@@ -72,11 +68,12 @@ export class NewRecordComponent implements OnInit {
     }
   
     public confirmAdd(): void {
-    console.log(this.remarks);
+    let data = {...this.data,remarks:this.remarks};
+    console.log(data);
     this.apollo.mutate({
       mutation: NEW_RECORD,
       variables: {
-        data: {...this.data,remarks:this.remarks}
+        data: data
       }
     }).subscribe(({ data }) => {
       console.log('got data', data);

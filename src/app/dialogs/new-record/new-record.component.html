@@ -13,8 +13,9 @@
       <!--Textarea for demo purposes-->
       <div class="form">
         <mat-form-field color="primary">
-          <textarea matInput #input type="number" class="form-control" placeholder="No wpt" [(ngModel)]="data.wpt" name="wpt" required ></textarea>
+          <input matInput #inputwpt type="number" class="form-control" placeholder="No Wpt" [(ngModel)]="data.wpt" name="wpt" maxlength="10" required >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-hint align="end">{{inputwpt.value?.length || 0}}/10</mat-hint>
         </mat-form-field>
       </div>
   
@@ -66,7 +67,7 @@
         <mat-chip-list #chipList aria-label="remark selection">
           <mat-chip *ngFor="let remark of remarks" [selectable]="selectable"
                    [removable]="removable" (removed)="remove(remark)">
-            {{remark.text}}
+            {{remark}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
           <input placeholder="New Remark..."
