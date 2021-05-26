@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit,OnDestroy  {
           id: id
         }
       }).subscribe(({ data }) => {
-        console.log('got data', data);
+        console.log('DELETED');
       },(error) => {
         console.log('there was an error sending the query', error);
       });
@@ -136,7 +136,6 @@ export class HomeComponent implements OnInit,OnDestroy  {
 
       this.subscription = this.logged.getLogged().subscribe(
         res => {
-          console.log(res);
           this.value = res.value;
         },
         err => {

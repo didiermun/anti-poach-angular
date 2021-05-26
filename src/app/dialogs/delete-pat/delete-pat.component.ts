@@ -1,10 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {FormControl, Validators} from '@angular/forms';
-
-export interface Remark {
-  text: string;
-}
+import {LoggedinService} from '../../services/loggedin/loggedin.service';
 
 @Component({
   selector: 'app-delete-pat',
@@ -12,12 +8,21 @@ export interface Remark {
   styleUrls: ['./delete-pat.component.css']
 })
 export class DeletePatrouilleComponent implements OnInit {
-
-  constructor(public dialogRef: MatDialogRef<DeletePatrouilleComponent>,
+  isloggedIn: boolean = false;
+  subscription: any;
+  constructor(private logged: LoggedinService,public dialogRef: MatDialogRef<DeletePatrouilleComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
     public confirmAdd(): void {
     }
   ngOnInit(): void {
+    this.subscription = this.logged.getLogged().subscribe(
+      res => {
+        this.isloggedIn = res.value;
+      },
+      err => {
+        console.error(`An error occurred: ${err.message}`);
+      }
+    );
   }
 
 }

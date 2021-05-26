@@ -12,6 +12,7 @@ export class TopNavComponent implements OnInit {
   subscription: any;
   logout(){
     localStorage.removeItem('token');
+    this.logged.setLogged(true, false);
     // this.router.navigateByUrl("")
   }
 
@@ -20,7 +21,6 @@ export class TopNavComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.logged.getLogged().subscribe(
       res => {
-        console.log(res);
         this.isloggedIn = res.value;
       },
       err => {
