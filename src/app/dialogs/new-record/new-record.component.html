@@ -13,7 +13,7 @@
       <!--Textarea for demo purposes-->
       <div class="form">
         <mat-form-field color="primary">
-          <textarea matInput #input class="form-control" placeholder="No wpt" [(ngModel)]="data.wpt" name="wpt" required ></textarea>
+          <textarea matInput #input type="number" class="form-control" placeholder="No wpt" [(ngModel)]="data.wpt" name="wpt" required ></textarea>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -21,7 +21,7 @@
       <!--Contains mat-hint for characters count and has maxLengt set-->
       <div class="form">
         <mat-form-field color="primary">
-          <input matInput #inputnorthing class="form-control" placeholder="Northing" [(ngModel)]="data.northing" name="northing" maxlength="4" required >
+          <input matInput #inputnorthing class="form-control" type="number" placeholder="Northing" [(ngModel)]="data.northing" name="northing" maxlength="4" required >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
           <mat-hint align="end">{{inputnorthing.value?.length || 0}}/4</mat-hint>
         </mat-form-field>
@@ -29,7 +29,7 @@
 
       <div class="form">
         <mat-form-field color="primary">
-          <input matInput #inputeasting class="form-control" placeholder="Easting" [(ngModel)]="data.easting" name="easting" maxlength="4" required >
+          <input matInput #inputeasting type="number" class="form-control" placeholder="Easting" [(ngModel)]="data.easting" name="easting" maxlength="4" required >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
           <mat-hint align="end">{{inputeasting.value?.length || 0}}/4</mat-hint>
         </mat-form-field>
@@ -37,27 +37,27 @@
   
       <div class="form">
         <mat-form-field color="primary">
-          <input matInput #inputnumber placeholder="Nombre" [(ngModel)]="data.number" name="number" required>
+          <input matInput #inputnumber type="number" placeholder="Nombre" [(ngModel)]="data.number" name="number" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
       <div class="form">
         <mat-form-field color="primary">
-          <input matInput #inputobservation placeholder="Observation" [(ngModel)]="data.observation" name="observation" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="primary">
-          <input matInput #inputotype placeholder="Type de Observation" [(ngModel)]="data.otype" name="otype" required>
+          <input matInput #inputobservation type="text" placeholder="Observation" [(ngModel)]="data.observation" name="observation" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
   
       <div class="form">
         <mat-form-field color="primary">
-          <input matInput #inputsitename placeholder="Nom du site" [(ngModel)]="data.sitename" name="sitename" required>
+          <input matInput #inputotype type="text" placeholder="Type de Observation" [(ngModel)]="data.otype" name="otype" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form">
+        <mat-form-field color="primary">
+          <input matInput #inputsitename type="text" placeholder="Nom du site" [(ngModel)]="data.sitename" name="sitename" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
