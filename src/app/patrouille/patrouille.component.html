@@ -39,9 +39,7 @@
                 <div class="w-full mt-2 px-2 flex hover:border-[#ff3e00] border-b">
                     <p class="px-2 font-semibold">Noms:</p> 
                     <div class="">
-                        <span class="block px-4 py-0 "><span class="font-bold text-xl">.</span>  Didier Munezero</span>
-                        <span class="block px-4 py-0 "><span class="font-bold text-xl">.</span>  Didier Munezero</span>
-                        <span class="block px-4 py-0 "><span class="font-bold text-xl">.</span>  {{patrouille.patrouille.names}}</span>
+                        <span class="block px-4 py-0 " *ngFor="let name of patrouille.patrouille.names"><span class="font-bold text-xl">.</span> {{name}}</span>
                     </div>
                 </div>
             </div>

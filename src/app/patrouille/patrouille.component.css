@@ -1,11 +1,17 @@
-@media (min-width: 1010px) { 
+::-webkit-scrollbar {
+display: none;
+}
+
+@media (min-width: 1000px) { 
 		.pat{
-			width: 34%;
-			height: 85vh;
+			width: 30%;
+			height: 87vh;
 			overflow-y: auto;
 		}
 		.records{
-			width: 66%;
+			width: 70%;
+			height: 87vh;
+			overflow-y: auto;
 		}
 		.outer-div{
 			display: flex;
