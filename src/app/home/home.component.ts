@@ -56,7 +56,6 @@ export class HomeComponent implements OnInit,OnDestroy  {
 
     dialogRef.afterClosed().subscribe(result => {
      if(result == "1"){
-       console.log("id :"+ id);
       this.apollo.mutate({
         mutation: DELETE_PATROUILLES,
         variables: {
