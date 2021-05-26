@@ -55,7 +55,7 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
  
   constructor(public dialog: MatDialog,private route: ActivatedRoute,private apollo: Apollo) { }
   loading!: boolean;
-  patrouille: any;
+  patrouille: any = {patrouille:{},records:[]};
   private querySubscription!: Subscription;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);

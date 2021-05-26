@@ -6,7 +6,9 @@ interface Token {
 }
 
 const token:string = localStorage.getItem('token') || '';
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TokenLoopService {
 
   constructor() { }
@@ -20,14 +22,14 @@ export class TokenLoopService {
 
    /**
    * Allows updating the current value of the behavior subject
-   * @param val a number representing the current value
-   * @param delta a number representing the positive or negative change in current value
+   * @param val a string representing the current value
+   * @param delta a string representing the positive or negative change in current value
    */
-    setCount(val: string, delta: string): void {
+    setToken(val: string, delta: string): void {
       this.countToken.next({value: delta});
     }
   
-    /** Resets the count to the initial value */
+    /** Resets the string to the initial value */
     resetCount(): void {
       this.countToken.next(this.initialToken);
     }

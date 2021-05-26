@@ -9,6 +9,7 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context';
+import {TokenLoopService} from './services/token-loop/token-loop.service'
 const uri = 'https://anti-poaching.herokuapp.com/graphql';
 
 export function provideApollo(httpLink: HttpLink) {
@@ -23,7 +24,7 @@ export function provideApollo(httpLink: HttpLink) {
   console.log(token);
   const auth = setContext((operation, context) => ({
     headers: {
-      auth_token: `Bearer ${token}`
+      token: token
     },
   }));
 
