@@ -11,7 +11,7 @@ import {map, startWith} from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { Apollo, QueryRef,gql } from 'apollo-angular';
 import {DeletePatrouilleComponent} from '../dialogs/delete-pat/delete-pat.component';
-import {TokenLoopService} from '../services/token-loop/token-loop.service'
+import {LoggedinService} from '../services/loggedin/loggedin.service';
 
 
 
@@ -44,12 +44,12 @@ export class HomeComponent implements OnInit,OnDestroy  {
   loading!: boolean;
   patrouilles: any[] = [];
   delete!: boolean;
-  value!: string;
+  value!: boolean;
   subscription: any;
   patrouilleQuery!: QueryRef<any>;
   private querySubscription!: Subscription;
 
-  constructor(private token: TokenLoopService,private apollo: Apollo,public dialog: MatDialog) {
+  constructor(private logged: LoggedinService,private apollo: Apollo,public dialog: MatDialog) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
         startWith(null),
         map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
@@ -134,7 +134,7 @@ export class HomeComponent implements OnInit,OnDestroy  {
         this.patrouilles = data.patrouilles;
       });
 
-      this.subscription = this.token.getToken().subscribe(
+      this.subscription = this.logged.getLogged().subscribe(
         res => {
           console.log(res);
           this.value = res.value;
@@ -146,6 +146,7 @@ export class HomeComponent implements OnInit,OnDestroy  {
   }
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
 }

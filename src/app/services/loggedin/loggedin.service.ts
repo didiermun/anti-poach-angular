@@ -4,15 +4,21 @@ import { BehaviorSubject,Observable } from 'rxjs';
 interface Logged {
   value: boolean;
 }
-const token:string = localStorage.getItem('token') || '';
+const token = localStorage.getItem('token');
+let val:boolean = false;
+ if(!token){
+   val = false;
+ }
+ else{
+   val = true;
+ }
 @Injectable({
   providedIn: 'root'
 })
 export class LoggedinService {
 
   constructor() { }
-  val = token == ''?false:true; 
-  private initialToken: Logged = {value: this.val};
+  private initialToken: Logged = {value: val};
   private LoggedVal = new BehaviorSubject<Logged>(this.initialToken);
 
   /** Allows subscription to the behavior subject as an observable */
