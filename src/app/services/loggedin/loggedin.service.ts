@@ -1,5 +1,18 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject,Observable } from 'rxjs';
+import { Subscription,BehaviorSubject,Observable } from 'rxjs';
+import { Apollo, QueryRef,gql } from 'apollo-angular';
+
+const ME = gql`
+  query me {
+    me {
+      success
+      code{
+        level
+        code
+      }
+    }
+  }
+`;
 
 interface Logged {
   value: boolean;
@@ -17,13 +30,32 @@ let val:boolean = false;
 })
 export class LoggedinService {
 
-  constructor() { }
+  data: any;
+  meQuery!: QueryRef<any>;
+  private querySubscription!: Subscription;
+  constructor(private apollo: Apollo) { }
   private initialToken: Logged = {value: val};
   private LoggedVal = new BehaviorSubject<Logged>(this.initialToken);
 
   /** Allows subscription to the behavior subject as an observable */
   getLogged(): Observable<Logged> {
+    this.refetch();
     return this.LoggedVal.asObservable();
+  }
+
+  refetch(): void{
+    this.meQuery = this.apollo.watchQuery<any>({
+      query: ME,
+      pollInterval: 500,
+    });
+    this.querySubscription = this.meQuery
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        if(!loading){
+        console.log('logged',data.me.success);
+        this.setLogged(data.me.success,data.me.success);
+      }
+      });
   }
 
    /**
