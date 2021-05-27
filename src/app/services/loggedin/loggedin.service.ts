@@ -39,19 +39,20 @@ export class LoggedinService {
 
   /** Allows subscription to the behavior subject as an observable */
   getLogged(): Observable<Logged> {
-    this.refetch();
+    // this.refetch();
     return this.LoggedVal.asObservable();
   }
 
   refetch(): void{
     this.meQuery = this.apollo.watchQuery<any>({
       query: ME,
-      pollInterval: 500,
+      pollInterval: 1000,
     });
     this.querySubscription = this.meQuery
       .valueChanges
       .subscribe(({ data, loading }) => {
         if(!loading){
+        console.log(data.me.success);
         this.setLogged(data.me.success,data.me.success);
       }
       });

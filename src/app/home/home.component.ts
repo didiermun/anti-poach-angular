@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { Apollo, QueryRef,gql } from 'apollo-angular';
+import { NotifierService } from 'angular-notifier';
 import {DeletePatrouilleComponent} from '../dialogs/delete-pat/delete-pat.component';
 import {LoggedinService} from '../services/loggedin/loggedin.service';
 
@@ -48,8 +49,10 @@ export class HomeComponent implements OnInit,OnDestroy  {
   subscription: any;
   patrouilleQuery!: QueryRef<any>;
   private querySubscription!: Subscription;
+  private readonly notifier: NotifierService;
 
-  constructor(private logged: LoggedinService,private apollo: Apollo,public dialog: MatDialog) {
+  constructor(notifierService: NotifierService,private logged: LoggedinService,private apollo: Apollo,public dialog: MatDialog) {
+    this.notifier = notifierService;
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
         startWith(null),
         map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
@@ -65,7 +68,7 @@ export class HomeComponent implements OnInit,OnDestroy  {
           id: id
         }
       }).subscribe(({ data }) => {
-        console.log('DELETED');
+        this.notifier.notify('info', 'Patrouille Deleted');
       },(error) => {
         console.log('there was an error sending the query', error);
       });

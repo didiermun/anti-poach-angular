@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       let res: any = data;
-        this.notifier.notify('success', 'Login successful');
+      this.notifier.notify('success', 'Login successful');
       localStorage.setItem("token",res.login.token)
       this.logged.setLogged(false, true);
       this.router.navigateByUrl("/");
