@@ -71,11 +71,6 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
 
  
   constructor(private logged: LoggedinService,public dialog: MatDialog,private route: ActivatedRoute,private apollo: Apollo) {
-     // Create 100 users
-    //  const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-     // Assign the data to the data source for the table to render
-    //  this.dataSource = new MatTableDataSource(this.patrouille.records);
    }
   loading: boolean = true;
   patrouille: pat = {patrouille:{},records:[]};
@@ -120,7 +115,6 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.loading = loading;
-        console.log(this.loading)
     });
       }
     );
@@ -134,6 +128,7 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
     );
   }
   ngOnDestroy() {
+    this.subscription.unsubscribe();
     this.querySubscription.unsubscribe();
   }
   ngAfterViewInit() {
@@ -151,9 +146,3 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
 
 }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
