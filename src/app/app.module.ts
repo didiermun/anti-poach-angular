@@ -31,6 +31,7 @@ import { NewRecordComponent } from './dialogs/new-record/new-record.component';
 import { NewEditComponent } from './dialogs/new-edit/new-edit.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { DeletePatrouilleComponent } from './dialogs/delete-pat/delete-pat.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +69,7 @@ import { DeletePatrouilleComponent } from './dialogs/delete-pat/delete-pat.compo
     MatPaginatorModule,
     MatButtonModule,
     MatDialogModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

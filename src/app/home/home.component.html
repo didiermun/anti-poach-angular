@@ -30,8 +30,10 @@
                               
                 </div>
 <main>
-	<p class="text-gray-400 text-center mt-4 text-sm">Affichage de {{patrouilles.length}}  rapports ...</p>
-	<div class="w-full mt-4 grid grid-cols-6 gap-2 justify-items-center">
+	<p *ngIf="!loading" class="text-gray-400 text-center mt-4 text-sm">Affichage de {{patrouilles.length}}  rapports ...</p>
+  <p *ngIf="loading" class="text-gray-400 text-center mt-4 text-sm">Loading reports ...</p>
+  <div [ngSwitch]="loading">
+	  <div *ngSwitchCase="false" class="w-full mt-4 grid grid-cols-6 gap-2 justify-items-center">
                 <div class="col-span-3 md:col-span-2" *ngFor="let patrouille of patrouilles">
                   <div class="pat shadow-lg mb-4 mx-4 cursor-pointer rounded py-4 px-4 bg-white">
                     <div class="flex flex-col">
@@ -54,7 +56,28 @@
                 
                 </div>
                 
-	</div>
+	  </div>
+    <div *ngSwitchCase="true" class="w-full mt-4 grid grid-cols-6 gap-2 justify-items-center">
+      <div class="col-span-3 md:col-span-2" *ngFor="let i of [1,2,3,3,4,5]">
+        <div class="pat shadow-lg mb-4 mx-4 cursor-pointer rounded py-4 px-4 bg-white">
+          <div class="flex flex-col">
+            <ngx-skeleton-loader  [theme]="{ height: '40px',width: '300px'}"></ngx-skeleton-loader>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="mt-2 min-w-full">
+            <ngx-skeleton-loader [theme]="{ height: '100px',width: '300px'}"></ngx-skeleton-loader>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="mt-2 flex">
+            <ngx-skeleton-loader  [theme]="{ height: '25px',width: '80px'}"></ngx-skeleton-loader> <span class="w-4"></span>
+            <ngx-skeleton-loader  [theme]="{ height: '25px',width: '80px'}"></ngx-skeleton-loader>
+          </div>
+        </div>
+      
+      </div>
+      
+</div>
+  </div>
 </main>
 
 </div>
