@@ -123,7 +123,6 @@ export class HomeComponent implements OnInit,OnDestroy  {
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
   ngOnInit(): void {
-    console.log(localStorage.getItem('logged'))
     this.patrouilleQuery = this.apollo.watchQuery<any>({
       query: GET_PATROUILLES,
       pollInterval: 500,

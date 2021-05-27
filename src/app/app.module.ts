@@ -32,6 +32,7 @@ import { NewEditComponent } from './dialogs/new-edit/new-edit.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { DeletePatrouilleComponent } from './dialogs/delete-pat/delete-pat.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NotifierModule } from 'angular-notifier';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +70,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     MatPaginatorModule,
     MatButtonModule,
     MatDialogModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    NotifierModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

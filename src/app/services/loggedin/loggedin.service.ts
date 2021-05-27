@@ -52,7 +52,6 @@ export class LoggedinService {
       .valueChanges
       .subscribe(({ data, loading }) => {
         if(!loading){
-        console.log('logged',data.me.success);
         this.setLogged(data.me.success,data.me.success);
       }
       });

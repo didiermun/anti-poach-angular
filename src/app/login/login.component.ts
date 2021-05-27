@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {LoggedinService} from '../services/loggedin/loggedin.service';
 import { Router} from '@angular/router';
 import { Apollo,gql } from 'apollo-angular';
+import { NotifierService } from 'angular-notifier';
 
 const LOGIN = gql`
   mutation login($code: String!) {
@@ -18,8 +19,11 @@ const LOGIN = gql`
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  private readonly notifier: NotifierService;
 
-  constructor(private logged: LoggedinService,private router: Router,private apollo: Apollo) { }
+  constructor(notifierService: NotifierService,private logged: LoggedinService,private router: Router,private apollo: Apollo) {
+    this.notifier = notifierService;
+  }
   formControl = new FormControl('', [
     Validators.required
     // Validators.email,
@@ -38,11 +42,12 @@ export class LoginComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       let res: any = data;
+        this.notifier.notify('success', 'Login successful');
       localStorage.setItem("token",res.login.token)
       this.logged.setLogged(false, true);
       this.router.navigateByUrl("/");
     },(error) => {
-      console.log(this.data,'there was an error sending the query', error);
+      this.notifier.notify('error', `${error.message}`);
     });
   }
   submit() {
