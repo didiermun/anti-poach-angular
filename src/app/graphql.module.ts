@@ -10,6 +10,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context';
 const uri = 'https://anti-poaching.herokuapp.com/graphql';
+import {TokenLoopService} from './services/token-loop/token-loop.service';
 
 export function provideApollo(httpLink: HttpLink) {
   const basic = setContext((operation, context) => ({
@@ -19,12 +20,14 @@ export function provideApollo(httpLink: HttpLink) {
   }));
 
   // Get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token') || '';
-  const auth = setContext((operation, context) => ({
+  const auth = setContext(async(_, {}) => {
+    const token = await localStorage.getItem('token') || '';
+    return {
     headers: {
       token: token
-    },
-  }));
+    }
+  }
+  });
 
   const link = ApolloLink.from([basic, auth, httpLink.create({ uri })]);
   const cache = new InMemoryCache();

@@ -25,12 +25,12 @@ export class TokenLoopService {
    * @param val a string representing the current value
    * @param delta a string representing the positive or negative change in current value
    */
-    setToken(val: string, delta: string): void {
-      this.countToken.next({value: delta});
+    setToken(): void {
+      this.countToken.next({value: localStorage.getItem('token') || ''});
     }
   
     /** Resets the string to the initial value */
     resetCount(): void {
-      this.countToken.next(this.initialToken);
+      this.countToken.next({value: localStorage.getItem('token') || ''});
     }
 }

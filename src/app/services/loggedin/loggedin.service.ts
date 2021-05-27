@@ -39,7 +39,13 @@ export class LoggedinService {
 
   /** Allows subscription to the behavior subject as an observable */
   getLogged(): Observable<Logged> {
-    // this.refetch();
+    const token = localStorage.getItem('token');
+    if(!token){
+      this.setLogged(false,false);
+    }
+    else{
+    this.refetch();
+  }
     return this.LoggedVal.asObservable();
   }
 
