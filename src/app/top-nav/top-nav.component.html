@@ -27,7 +27,7 @@
               </button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item class="focus:outline-none" *ngIf="!isloggedIn" routerLink="/login">Login</button>
-                <button mat-menu-item class="focus:outline-none" *ngIf="isloggedIn" routerLink="/dashboard">Dashboard</button>
+                <button mat-menu-item class="focus:outline-none" *ngIf="isloggedIn" routerLink="/admin">Dashboard</button>
                 <button mat-menu-item class="focus:outline-none" *ngIf="isloggedIn" (click)="logout()">Logout</button>
               </mat-menu>
             </div>

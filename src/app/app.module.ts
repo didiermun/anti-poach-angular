@@ -34,6 +34,7 @@ import { DeletePatrouilleComponent } from './dialogs/delete-pat/delete-pat.compo
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NotifierModule } from 'angular-notifier';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     NewEditComponent,
     DeletePatrouilleComponent,
     NotfoundComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
