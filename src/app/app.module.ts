@@ -36,6 +36,10 @@ import { NotifierModule } from 'angular-notifier';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { SidebarComponent } from './sidebar/sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +53,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DeletePatrouilleComponent,
     NotfoundComponent,
     DashboardComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +83,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatDialogModule,
     NgxSkeletonLoaderModule,
     NotifierModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
     
   ],
   providers: [],
