@@ -35,6 +35,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NotifierModule } from 'angular-notifier';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatDividerModule,
     MatChipsModule,
     MatSelectModule,
+    FlexLayoutModule,
     MatFormFieldModule,
     MatAutocompleteModule,
     FormsModule,
