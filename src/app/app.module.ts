@@ -33,6 +33,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { DeletePatrouilleComponent } from './dialogs/delete-pat/delete-pat.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NotifierModule } from 'angular-notifier';
+import { NotfoundComponent } from './notfound/notfound.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { NotifierModule } from 'angular-notifier';
     NewRecordComponent,
     NewEditComponent,
     DeletePatrouilleComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
