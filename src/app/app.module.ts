@@ -40,6 +40,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ReportsComponent } from './reports/reports.component';
+import { CodesComponent } from './codes/codes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +56,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     NotfoundComponent,
     DashboardComponent,
     SidebarComponent,
+    ReportsComponent,
+    CodesComponent,
   ],
   imports: [
     BrowserModule,
