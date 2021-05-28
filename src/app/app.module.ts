@@ -77,7 +77,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatDialogModule,
     NgxSkeletonLoaderModule,
-    NotifierModule
+    NotifierModule,
     
   ],
   providers: [],
