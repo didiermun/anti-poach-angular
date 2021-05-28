@@ -42,6 +42,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ReportsComponent } from './reports/reports.component';
 import { CodesComponent } from './codes/codes.component';
+import { DashIndexComponent } from './dash-index/dash-index.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { CodesComponent } from './codes/codes.component';
     SidebarComponent,
     ReportsComponent,
     CodesComponent,
+    DashIndexComponent,
   ],
   imports: [
     BrowserModule,
