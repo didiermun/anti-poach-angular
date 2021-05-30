@@ -1,7 +1,9 @@
 import {AfterViewInit,OnInit, Component, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { NewEditComponent } from '../dialogs/new-edit/new-edit.component';
 
 export interface UserData {
   id: string;
@@ -33,12 +35,21 @@ export class CodesComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor() { 
+  constructor(public dialog: MatDialog) { 
      // Create 100 users
      const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
      // Assign the data to the data source for the table to render
      this.dataSource = new MatTableDataSource(users);
+  }
+  addNew() {
+    const dialogRef = this.dialog.open(NewEditComponent, {
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+     console.log("result: "+ result);
+    });
   }
 
   ngAfterViewInit() {
