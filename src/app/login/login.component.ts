@@ -9,6 +9,7 @@ const LOGIN = gql`
   mutation login($code: String!) {
     login(code: $code) {
       token
+      success
     }
   }
 `;
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       let res: any = data;
+      console.log(res);
       if(res.login.success){
         this.notifier.notify('success', 'Login successful');
         localStorage.setItem("token",res.login.token)
