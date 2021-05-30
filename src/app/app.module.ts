@@ -42,6 +42,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { ReportsComponent } from './reports/reports.component';
 import { CodesComponent } from './codes/codes.component';
 import { DashIndexComponent } from './dash-index/dash-index.component';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +91,7 @@ import { DashIndexComponent } from './dash-index/dash-index.component';
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
+    NgxChartsModule
     
   ],
   providers: [],

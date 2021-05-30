@@ -35,7 +35,31 @@
     </div>
 </div>
 <div class="container mx-auto px-6">
-    <div class="">
-        <h1 class="text-center">Dashboard</h1>
+        <div class="block">
+            <h1 class="text-center">Last 5 Months Comparison</h1>
+        <ngx-charts-bar-vertical 
+    [view]="[1000,400]"
+    [results]="saleData"
+    [xAxisLabel]="'Products'"
+    [legendTitle]="'Product Sale Chart'"
+    [yAxisLabel]="'Sale'"
+    [legend]="true"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [gradient]="true">
+</ngx-charts-bar-vertical>
+</div>
+
+<div class="block mt-40">
+<h1 class="text-center">Last 5 Months Comparison</h1>
+<ngx-charts-pie-chart 
+    [results]="saleData"
+    [legend]="true"
+    [legendTitle]="'Product Sale Report'" 
+    [view]="[1000,300]"
+    [labels]="true" >
+</ngx-charts-pie-chart>
     </div>
 </div>
