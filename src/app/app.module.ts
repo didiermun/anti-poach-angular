@@ -39,7 +39,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { ReportsComponent } from './reports/reports.component';
 import { CodesComponent } from './codes/codes.component';
 import { DashIndexComponent } from './dash-index/dash-index.component';
@@ -56,7 +55,6 @@ import { DashIndexComponent } from './dash-index/dash-index.component';
     DeletePatrouilleComponent,
     NotfoundComponent,
     DashboardComponent,
-    SidebarComponent,
     ReportsComponent,
     CodesComponent,
     DashIndexComponent,
