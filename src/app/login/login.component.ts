@@ -42,10 +42,15 @@ export class LoginComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       let res: any = data;
-      this.notifier.notify('success', 'Login successful');
-      localStorage.setItem("token",res.login.token)
-      this.logged.setLogged(false, true);
-      this.router.navigateByUrl("/");
+      if(res.login.success){
+        this.notifier.notify('success', 'Login successful');
+        localStorage.setItem("token",res.login.token)
+        this.logged.setLogged(false, true);
+        this.router.navigateByUrl("/");
+      }
+      else{
+        this.notifier.notify('error','Code not found');
+      }
     },(error) => {
       this.notifier.notify('error', `${error.message}`);
     });
