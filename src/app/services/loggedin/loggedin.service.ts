@@ -58,7 +58,6 @@ export class LoggedinService {
       .valueChanges
       .subscribe(({ data, loading }) => {
         if(!loading){
-          console.log(data.me)
           if(data.me.code){
             localStorage.setItem('code_level',data.me.code.level);
           }

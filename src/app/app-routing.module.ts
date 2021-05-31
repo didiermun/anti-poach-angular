@@ -9,13 +9,13 @@ import {DashboardComponent} from './dashboard/dashboard.component'
 import {ReportsComponent} from './reports/reports.component'
 import {CodesComponent} from './codes/codes.component'
 import {DashIndexComponent} from './dash-index/dash-index.component'
-import {AuthService as AuthGuard} from '../app/services/auth-guard/auth.service'
+import {AuthGuardService} from './services/guards/authGuardService'
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'new-report', component: NewReportComponent},
   { path: 'patrouille/:patrouilleId',component: PatrouilleComponent },
-  {path: 'admin', component: DashboardComponent,canActivate: [AuthGuard],children:[
+  {path: 'admin', component: DashboardComponent,canActivate: [AuthGuardService],children:[
     { path: '', component: DashIndexComponent},
     {path: 'codes',component:CodesComponent},
     {path: 'reports',component:ReportsComponent},
