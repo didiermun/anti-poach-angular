@@ -43,6 +43,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { CodesComponent } from './codes/codes.component';
 import { DashIndexComponent } from './dash-index/dash-index.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
+import {AuthService as AuthGuard} from './services/auth-guard/auth.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +95,7 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
     NgxChartsModule
     
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

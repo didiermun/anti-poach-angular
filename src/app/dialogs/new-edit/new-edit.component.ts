@@ -1,14 +1,12 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {FormControl, Validators} from '@angular/forms';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
 import { gql,Apollo } from 'apollo-angular';
 
-const NEW_RECORD = gql`
-  mutation newRecord($data: NewRecord!) {
-    newRecord(record: $data) {
-      id
+const NEW_CODE = gql`
+  mutation newCode($data: NewCode!) {
+    newCode(code: $data) {
+      _id
     }
   }
 `
@@ -25,7 +23,6 @@ export class NewEditComponent implements OnInit {
 
     formControl = new FormControl('', [
       Validators.required
-      // Validators.email,
     ]);
   
     getErrorMessage() {
@@ -33,33 +30,7 @@ export class NewEditComponent implements OnInit {
         this.formControl.hasError('email') ? 'Not a valid email' :
           '';
     }
-    visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  remarks: string[] = [];
 
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-
-    // Add our remark
-    if (value) {
-      this.remarks.push(value);
-    }
-
-    // Clear the input value
-    event.chipInput!.clear();
-  }
-
-  remove(remark: string): void {
-    const index = this.remarks.indexOf(remark);
-
-    if (index >= 0) {
-      this.remarks.splice(index, 1);
-    }
-  }
-  
     submit() {
     }
   
@@ -68,11 +39,11 @@ export class NewEditComponent implements OnInit {
     }
   
     public confirmAdd(): void {
-    let data = {...this.data,remarks:this.remarks};
+      console.log(this.data);
     this.apollo.mutate({
-      mutation: NEW_RECORD,
+      mutation: NEW_CODE,
       variables: {
-        data: data
+        data: this.data
       }
     }).subscribe(({ data }) => {
       console.log('got data', data);
