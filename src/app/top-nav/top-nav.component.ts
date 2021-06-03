@@ -9,6 +9,8 @@ import {LoggedinService,Logged} from '../services/loggedin/loggedin.service';
 export class TopNavComponent implements OnInit {
 
   isloggedIn: boolean = false;
+  level: string = "";
+  isAdmin: boolean = false;
   user_status: Logged = {loggedin: false,code_level: "USER"};
   subscription: any;
   logout(){
@@ -23,7 +25,8 @@ export class TopNavComponent implements OnInit {
     this.subscription = this.logged.getLogged().subscribe(
       res => {
         this.isloggedIn = res.loggedin;
-        this.user_status = res;
+        this.level = res.code_level;
+        this.isAdmin = this.level==="ADMIN";
       },
       err => {
         console.error(`An error occurred: ${err.message}`);

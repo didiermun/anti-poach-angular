@@ -43,7 +43,6 @@ export class LoggedinService {
   private initialToken: Logged = {loggedin: val,code_level:c_l};
   private LoggedVal = new BehaviorSubject<Logged>(this.initialToken);
 
-  /** Allows subscription to the behavior subject as an observable */
   getLogged(): Observable<Logged> {
     const token = localStorage.getItem('token');
     if(!token){
@@ -75,11 +74,7 @@ export class LoggedinService {
       });
   }
 
-   /**
-   * Allows updating the current value of the behavior subject
-   * @param val a bool representing the current value
-   * @param delta bool number representing the positive or negative change in current value
-   */
+
     setLogged(loggedin: boolean, code_level: string): void {
       this.LoggedVal.next({loggedin: loggedin,code_level: code_level});
     }
