@@ -5,15 +5,16 @@ import { Router, CanActivate, ActivatedRouteSnapshot,RouterStateSnapshot } from 
 @Injectable()
 export class AuthGuardService implements CanActivate {
  
-    constructor(private _router:Router ) {
+    constructor(private _router:Router) {
     }
  
     canActivate(route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): boolean {
         const level = localStorage.getItem('code_level');
+        const token = localStorage.getItem('token');
         console.log(level);
  
-        if (!level)  {
+        if (!level || !token)  {
             this._router.navigateByUrl('/404');
             return false;
         } 

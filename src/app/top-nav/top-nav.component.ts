@@ -15,6 +15,7 @@ export class TopNavComponent implements OnInit {
   subscription: any;
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('code_level');
     this.logged.setLogged(false, "");
     // this.router.navigateByUrl("")
   }
