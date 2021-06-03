@@ -23,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PatrouilleComponent } from './patrouille/patrouille.component';
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
@@ -92,7 +93,8 @@ import {AuthGuardService} from './services/guards/authGuardService'
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatTabsModule
     
   ],
   providers: [AuthGuardService],
