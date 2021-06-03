@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     // Validators.email,
   ]);
   data: string | undefined;
+  hide:boolean = true;
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Required field' :
       this.formControl.hasError('email') ? 'Not a valid email' :
