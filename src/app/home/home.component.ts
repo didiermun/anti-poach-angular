@@ -135,6 +135,8 @@ export class HomeComponent implements OnInit,OnDestroy  {
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.patrouilles = data.patrouilles;
+    },(error) => {
+      console.log('error', `${error.message}`);
     });
 
       this.subscription = this.logged.getLogged().subscribe(

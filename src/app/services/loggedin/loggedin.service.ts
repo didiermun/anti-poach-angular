@@ -71,6 +71,8 @@ export class LoggedinService {
             this.setLogged(data.me.success,"USER");
           }
       }
+      },(error) => {
+        console.log('error', `${error.message}`);
       });
   }
 
@@ -79,7 +81,6 @@ export class LoggedinService {
       this.LoggedVal.next({loggedin: loggedin,code_level: code_level});
     }
   
-    /** Resets the logged to the initial value */
     resetLogged(): void {
       this.LoggedVal.next(this.initialToken);
     }

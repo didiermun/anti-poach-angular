@@ -115,6 +115,8 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.loading = loading;
+    },(error) => {
+      console.log('error', `${error.message}`);
     });
       }
     );
