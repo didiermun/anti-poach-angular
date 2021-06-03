@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       if(res.login.success){
         this.notifier.notify('success', 'Login successful');
         localStorage.setItem("token",res.login.token)
-        this.logged.setLogged(false, true);
+        this.logged.setLogged(true, "USER");
         this.router.navigateByUrl("/");
       }
       else{

@@ -17,7 +17,7 @@ export class DeletePatrouilleComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.logged.getLogged().subscribe(
       res => {
-        this.isloggedIn = res.value;
+        this.isloggedIn = res.loggedin;
       },
       err => {
         console.error(`An error occurred: ${err.message}`);

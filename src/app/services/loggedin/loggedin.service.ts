@@ -14,11 +14,17 @@ const ME = gql`
   }
 `;
 
-interface Logged {
-  value: boolean;
+export interface Logged {
+  loggedin: boolean;
+  code_level: string;
 }
 const token = localStorage.getItem('token');
+const code_level = localStorage.getItem('code_level');
 let val:boolean = false;
+let c_l: string = "USER"
+if(code_level){
+  c_l = code_level;
+}
  if(!token){
    val = false;
  }
@@ -34,14 +40,14 @@ export class LoggedinService {
   meQuery!: QueryRef<any>;
   private querySubscription!: Subscription;
   constructor(private apollo: Apollo) { }
-  private initialToken: Logged = {value: val};
+  private initialToken: Logged = {loggedin: val,code_level:c_l};
   private LoggedVal = new BehaviorSubject<Logged>(this.initialToken);
 
   /** Allows subscription to the behavior subject as an observable */
   getLogged(): Observable<Logged> {
     const token = localStorage.getItem('token');
     if(!token){
-      this.setLogged(false,false);
+      this.setLogged(false,"");
     }
     else{
     this.refetch();
@@ -60,8 +66,11 @@ export class LoggedinService {
         if(!loading){
           if(data.me.code){
             localStorage.setItem('code_level',data.me.code.level);
+            this.setLogged(data.me.success,data.me.code.level);
           }
-        this.setLogged(data.me.success,data.me.success);
+          else{
+            this.setLogged(data.me.success,"USER");
+          }
       }
       });
   }
@@ -71,8 +80,8 @@ export class LoggedinService {
    * @param val a bool representing the current value
    * @param delta bool number representing the positive or negative change in current value
    */
-    setLogged(val: boolean, delta: boolean): void {
-      this.LoggedVal.next({value: delta});
+    setLogged(loggedin: boolean, code_level: string): void {
+      this.LoggedVal.next({loggedin: loggedin,code_level: code_level});
     }
   
     /** Resets the logged to the initial value */

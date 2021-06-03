@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit,OnDestroy  {
 
       this.subscription = this.logged.getLogged().subscribe(
         res => {
-          this.value = res.value;
+          this.value = res.loggedin;
         },
         err => {
           console.error(`An error occurred: ${err.message}`);
