@@ -3,8 +3,20 @@
     <div class="py-4 px-8 shadow-lg rounded-lg my-5 bg-white">
         <mat-tab-group dynamicHeight class="tabs">
             <mat-tab label="Statistics">
-              <div class="example-small-box mat-elevation-z4">
-                Statist
+              <div class="">
+                <ngx-charts-bar-vertical 
+                  [view]="[800,400]"
+                  [results]="saleData"
+                  [xAxisLabel]="'Months'"
+                  [legendTitle]="'Month Comparison Chart'"
+                  [yAxisLabel]="'Reports'"
+                  [legend]="true"
+                  [showXAxisLabel]="true"
+                  [showYAxisLabel]="true"
+                  [xAxis]="true"
+                  [yAxis]="true"
+                  [gradient]="true"
+                ></ngx-charts-bar-vertical>
               </div>
             </mat-tab>
             <mat-tab label="Codes">
