@@ -41,10 +41,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ReportsComponent } from './reports/reports.component';
-import { CodesComponent } from './codes/codes.component';
+import { CodesComponent } from './components/codes/codes.component';
 import { DashIndexComponent } from './dash-index/dash-index.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
-import {AuthGuardService} from './services/guards/authGuardService'
+import {AuthGuardService} from './services/guards/authGuardService';
+import { DashboardChartsComponent } from './components/dashboard-charts/dashboard-charts.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +62,7 @@ import {AuthGuardService} from './services/guards/authGuardService'
     ReportsComponent,
     CodesComponent,
     DashIndexComponent,
+    DashboardChartsComponent,
   ],
   imports: [
     BrowserModule,
