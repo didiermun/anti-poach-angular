@@ -1,31 +1,31 @@
 <div class="dialog">
   <div *ngIf="isloggedIn && isAdmin">
-<p mat-dialog-title class="font-semibold text-lg">Delete Patrouille</p>
+<p mat-dialog-title class="font-semibold text-lg">Supprimer la  patrouille</p>
 <div mat-dialog-content>
-  <p class="">Are you sure you want to delete this Patrouille ?</p>
+  <p class="">Êtes-vous sûr de vouloir supprimer cette Patrouille ?</p>
 </div>
 <div mat-dialog-actions class="flex">
-  <button mat-button  class="py-1.5 px-6 rounded bg-[#ff3e00] text-white mx-2 focus:outline-none" [mat-dialog-close]="1" (click)="confirmAdd()">Yes Delete</button>
-  <button mat-button  class="py-1.5 px-6 rounded bg-[#e4e4e4] mx-2 focus:outline-none" (click)="confirmAdd()" [mat-dialog-close]="-1">No Thanks</button>
+  <button mat-button  class="py-1.5 px-6 rounded bg-[#ff3e00] text-white mx-2 focus:outline-none" [mat-dialog-close]="1" (click)="confirmAdd()">Oui Supprimer</button>
+  <button mat-button  class="py-1.5 px-6 rounded bg-[#e4e4e4] mx-2 focus:outline-none" (click)="confirmAdd()" [mat-dialog-close]="-1">Non Merci</button>
 </div>
 </div>
 <div *ngIf="isloggedIn && !isAdmin">
-  <p mat-dialog-title class="font-semibold text-lg">Delete Patrouille</p>
+  <p mat-dialog-title class="font-semibold text-lg">Supprimer la  patrouille</p>
   <div mat-dialog-content>
-    <p class="">You do not have permission to delete this patrouille</p>
+    <p class="">Vous n'avez pas la permission de supprimer cette patrouille</p>
   </div>
   <div mat-dialog-actions class="flex flex-row-reverse">
-    <button mat-button  class="py-1.5 px-6 rounded bg-[#e4e4e4]  mx-2 focus:outline-none" [mat-dialog-close]="-1" (click)="confirmAdd()">Ok, I see</button>
+    <button mat-button  class="py-1.5 px-6 rounded bg-[#e4e4e4]  mx-2 focus:outline-none" [mat-dialog-close]="-1" (click)="confirmAdd()">Ok, bien</button>
   </div>
   </div>
 <div *ngIf="!isloggedIn">
-<p mat-dialog-title class="font-semibold text-lg">Delete Patrouille</p>
+<p mat-dialog-title class="font-semibold text-lg">Supprimer la  patrouille</p>
 <div mat-dialog-content>
-  <p class="">You are not logged in</p>
+  <p class="">Vous n'êtes pas connecté, Connecté?</p>
 </div>
 <div mat-dialog-actions class="flex">
-  <button mat-button  class="py-1.5 px-8 rounded bg-green-400 text-white mx-2 focus:outline-none" (click)="confirmAdd()" routerLink="/login" [mat-dialog-close]="-1">Login</button>
-  <button mat-button  class="py-1.5 px-6 rounded bg-[#e4e4e4]  mx-2 focus:outline-none" [mat-dialog-close]="-1" (click)="confirmAdd()">No need</button>
+  <button mat-button  class="py-1.5 px-8 rounded bg-green-400 text-white mx-2 focus:outline-none" (click)="confirmAdd()" routerLink="/login" [mat-dialog-close]="-1">Connecté</button>
+  <button mat-button  class="py-1.5 px-6 rounded bg-[#e4e4e4]  mx-2 focus:outline-none" [mat-dialog-close]="-1" (click)="confirmAdd()">Non Merci</button>
 </div>
 </div>
 </div>
