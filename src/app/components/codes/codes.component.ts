@@ -73,7 +73,6 @@ export class CodesComponent implements OnInit {
     }
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe();
     this.querySubscription.unsubscribe();
   }
   ngOnInit(): void {

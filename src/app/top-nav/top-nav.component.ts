@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {LoggedinService,Logged} from '../services/loggedin/loggedin.service';
 
 @Component({
@@ -17,10 +18,13 @@ export class TopNavComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('code_level');
     this.logged.setLogged(false, "");
-    // this.router.navigateByUrl("")
+    console.log(this.router.url);
+    if(this.router.url.startsWith('/admin') || this.router.url.startsWith('/new-report')){
+      this.router.navigateByUrl("/")
+    } 
   }
 
-  constructor(private logged: LoggedinService) { }
+  constructor(private router: Router,private logged: LoggedinService) { }
 
   ngOnInit(): void {
     this.subscription = this.logged.getLogged().subscribe(
