@@ -9,6 +9,7 @@ import {LoggedinService} from '../../services/loggedin/loggedin.service';
 })
 export class DeletePatrouilleComponent implements OnInit {
   isloggedIn: boolean = false;
+  isAdmin: boolean = false;
   subscription: any;
   constructor(private logged: LoggedinService,public dialogRef: MatDialogRef<DeletePatrouilleComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
@@ -18,6 +19,7 @@ export class DeletePatrouilleComponent implements OnInit {
     this.subscription = this.logged.getLogged().subscribe(
       res => {
         this.isloggedIn = res.loggedin;
+        this.isAdmin = res.code_level === "ADMIN";
       },
       err => {
         console.error(`An error occurred: ${err.message}`);

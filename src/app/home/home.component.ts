@@ -84,8 +84,8 @@ export class HomeComponent implements OnInit,OnDestroy  {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]> | undefined;
-  fruits: string[] = ['Today'];
-  allFruits: string[] = ['Yesterday', 'This week', 'This month'];
+  fruits: string[] = ["Aujourd 'hui"];
+  allFruits: string[] = ['Hier', 'Cette Semaine', 'Ce mois-ci'];
 
   @ViewChild('fruitInput')
   fruitInput!: ElementRef<HTMLInputElement>;

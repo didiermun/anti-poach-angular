@@ -1,5 +1,5 @@
 <div class="dialog">
-  <div *ngIf="isloggedIn">
+  <div *ngIf="isloggedIn && isAdmin">
 <p mat-dialog-title class="font-semibold text-lg">Delete Patrouille</p>
 <div mat-dialog-content>
   <p class="">Are you sure you want to delete this Patrouille ?</p>
@@ -9,6 +9,15 @@
   <button mat-button  class="py-1.5 px-6 rounded bg-[#e4e4e4] mx-2 focus:outline-none" (click)="confirmAdd()" [mat-dialog-close]="-1">No Thanks</button>
 </div>
 </div>
+<div *ngIf="isloggedIn && !isAdmin">
+  <p mat-dialog-title class="font-semibold text-lg">Delete Patrouille</p>
+  <div mat-dialog-content>
+    <p class="">You do not have permission to delete this patrouille</p>
+  </div>
+  <div mat-dialog-actions class="flex flex-row-reverse">
+    <button mat-button  class="py-1.5 px-6 rounded bg-[#e4e4e4]  mx-2 focus:outline-none" [mat-dialog-close]="-1" (click)="confirmAdd()">Ok, I see</button>
+  </div>
+  </div>
 <div *ngIf="!isloggedIn">
 <p mat-dialog-title class="font-semibold text-lg">Delete Patrouille</p>
 <div mat-dialog-content>
