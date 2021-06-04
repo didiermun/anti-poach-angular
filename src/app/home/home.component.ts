@@ -1,8 +1,8 @@
 import {Patrouille} from '../../types/patrouille'
 
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog,} from '@angular/material/dialog';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, Inject,ElementRef,OnDestroy, ViewChild, OnInit} from '@angular/core';
+import {Component,ElementRef,OnDestroy, ViewChild, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';

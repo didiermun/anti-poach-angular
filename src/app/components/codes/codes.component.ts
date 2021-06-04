@@ -3,42 +3,47 @@ import { MatDialog } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { Apollo, gql, QueryRef } from 'apollo-angular';
+import { Subscription } from 'rxjs';
 import { NewEditComponent } from '../../dialogs/new-edit/new-edit.component';
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
+
+const GET_CODES = gql`
+query codes{
+  codes{
+    _id
+    level
+    code
+  }
 }
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry', 'lychee', 'kiwi', 'mango', 'peach', 'lime', 'pomegranate', 'pineapple'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
-
+`
+export interface codeI{
+  id: string;
+  code: string;
+  level: string;
+}
 @Component({
   selector: 'app-codes',
   templateUrl: './codes.component.html',
   styleUrls: ['./codes.component.css']
 })
 export class CodesComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+  loading: boolean = true;
+  codes: codeI[] = [];
+  patrouilleQuery!: QueryRef<any>;
+  subscription: any;
+  isloggedIn: boolean = false;
+  private querySubscription!: Subscription;
+  
+  displayedColumns: string[] = ['code', 'level'];
+  dataSource!: MatTableDataSource<codeI>;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(public dialog: MatDialog) { 
-     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-     this.dataSource = new MatTableDataSource(users);
+  constructor(public dialog: MatDialog,private apollo: Apollo) { 
   }
   addNew() {
     const dialogRef = this.dialog.open(NewEditComponent, {
@@ -51,9 +56,13 @@ export class CodesComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+   
   }
+
+  refresh() {
+    this.patrouilleQuery.refetch()
+  }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -63,20 +72,26 @@ export class CodesComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.querySubscription.unsubscribe();
+  }
   ngOnInit(): void {
+    this.patrouilleQuery = this.apollo.watchQuery<any>({
+      query: GET_CODES,
+      pollInterval: 500,
+    });
+    this.querySubscription = this.patrouilleQuery
+  .valueChanges
+  .subscribe(({ data, loading }) => {
+    this.codes = data.codes;
+    this.dataSource = new MatTableDataSource(this.codes);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.loading = loading;
+},(error) => {
+  console.log('error', `${error.message}`);
+});
   }
 
-}
-
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))]
-  };
 }

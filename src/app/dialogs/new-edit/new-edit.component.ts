@@ -12,6 +12,16 @@ const NEW_CODE = gql`
   }
 `
 
+const ALL_CODES =  gql`
+query codes{
+  codes{
+    id
+    code
+    level
+  }
+}
+`
+
 @Component({
   selector: 'app-new-edit',
   templateUrl: './new-edit.component.html',
@@ -57,7 +67,5 @@ export class NewEditComponent implements OnInit {
       console.error(error);
     });
     }
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
