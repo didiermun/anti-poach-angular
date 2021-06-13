@@ -4,17 +4,11 @@ display: none;
 
 @media (min-width: 1000px) { 
 		.pat{
-			width: 30%;
-			height: 87vh;
+			width: 100%;
 			overflow-y: auto;
 		}
 		.records{
-			width: 70%;
-			height: 87vh;
 			overflow-y: auto;
-		}
-		.outer-div{
-			display: flex;
 		}
 	 }
     ::-webkit-scrollbar {

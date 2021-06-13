@@ -69,6 +69,8 @@ export class NewRecordComponent implements OnInit {
   
     public confirmAdd(): void {
     let data = {...this.data,remarks:this.remarks};
+    data.wpt = Math.round(data.wpt);
+    data.number = Math.round(data.number)
     this.apollo.mutate({
       mutation: NEW_RECORD,
       variables: {
