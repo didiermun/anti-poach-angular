@@ -22,20 +22,7 @@ const NEW_PATROUILLE = gql`
     }
   }
 `
-interface Report{
-  id: string;
-  date: Date;
-  sector: number;
-  composition: string | undefined;
-  family: string | undefined;
-  path: string | undefined;
-  gpsNO: string | undefined;
-  feuilleNO: string | undefined;
-  type: string | undefined;
-  teamLeader: string | undefined;
-  nTeamMembers: number | undefined;
-  names: string[] | undefined;
-}
+
 
 @Component({
   selector: 'app-new-report',
@@ -69,7 +56,7 @@ export class NewReportComponent implements OnInit {
   });
   secondFormGroup = this._formBuilder.group({
    teamLeader: ['', Validators.required],
-   nTeamMembers: [0,Validators.required],
+   nTeamMembers: [,Validators.required],
   });
   thirdFormGroup = this._formBuilder.group({
     thirdCtrl: ['', Validators.required]
@@ -134,12 +121,11 @@ export class NewReportComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
+
     if (value) {
       this.fruits.push(value);
     }
 
-    // Clear the input value
     event.chipInput!.clear();
 
     this.fruitCtrl.setValue(null);
@@ -153,6 +139,8 @@ export class NewReportComponent implements OnInit {
     }
   }
 
+  valid: boolean = true;
+
   selected(event: MatAutocompleteSelectedEvent): void {
     this.fruits.push(event.option.viewValue);
     this.fruitInput.nativeElement.value = '';
@@ -165,8 +153,12 @@ export class NewReportComponent implements OnInit {
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
   submit(){
+    this.valid = this.fruits.length == this.secondFormGroup.value.nTeamMembers;
+    if(this.fruits.length == this.secondFormGroup.value.nTeamMembers){
     let data = {...this.secondFormGroup.value,...this.firstFormGroup.value, names: this.fruits}
     data.date = data.date.toString();
+    data.gpsNO = Math.round(data.gpsNO)
+    data.feuilleNO = Math.round(data.feuilleNO)
     data.sector = parseInt(data.sector);
     this.apollo.mutate({
       mutation: NEW_PATROUILLE,
@@ -181,6 +173,7 @@ export class NewReportComponent implements OnInit {
       console.log('there was an error sending the query', error);
       console.error(error);
     });
+  }
   }
   constructor(private router: Router,private apollo: Apollo,private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')

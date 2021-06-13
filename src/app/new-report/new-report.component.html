@@ -71,7 +71,7 @@
                 
               </mat-form-field>
             <div class="col-span-6">
-              <button matStepperNext class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Next</button>
+              <button matStepperNext class="mx-2 bg-green-400 px-8 py-1.5 text-white text-lg focus:outline-none rounded-sm">Next</button>
             </div>
           </form>
         </mat-step>
@@ -89,7 +89,7 @@
             <!-- <div class="search bg-white rounded px-4 py-2 ml-5 shadow-lg col-span-6"> -->
                 <mat-form-field class="example-chip-list" class="col-span-6">
                         <mat-label>Enter members names separated with comma</mat-label>
-                        <mat-chip-list #chipList aria-label="Fruit selection">
+                        <mat-chip-list #chipList aria-label="Names selection">
                           <mat-chip
                             *ngFor="let fruit of fruits"
                             [selectable]="selectable"
@@ -116,18 +116,22 @@
                       
         <!-- </div> -->
             <div class="col-span-6">
-                <button  matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Back</button>
-                <button matStepperNext class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Next</button>
+                <button  matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-sm">Back</button>
+                <button matStepperNext class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-sm">Next</button>
               </div>
           </form>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>DONE AND SUBMIT</ng-template>
-          <p class="text-center text-xl">You are now done.</p>
+
+          <div [ngSwitch]="valid">
+            <p class="text-center text-xl"  *ngSwitchCase="true">You are now done.</p>
+            <p class="text-center text-xl text-red-600" *ngSwitchCase="false">Number of team members is not equal to names provided. <br> Please go back and provide equal values.</p>
+          </div>
           <div class="flex flex-col mx-auto items-center">
             <div>
-                <button matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Back</button>
-                <button (click)="submit()" class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-none">Submit</button>
+                <button matStepperPrevious class="mx-2 bg-[#ff3e00] px-6 py-1.5 text-white text-lg focus:outline-none rounded-sm">Back</button>
+                <button (click)="submit()" class="mx-2 bg-green-400 px-6 py-1.5 text-white text-lg focus:outline-none rounded-sm">Submit</button>
               </div>
           </div>
         </mat-step>
