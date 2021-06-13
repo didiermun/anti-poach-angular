@@ -4,3 +4,11 @@
     box-sizing: border-box;
     
 }
+
+.inner-block{
+    min-height: 95%;
+}
+
+.footer{
+    max-width: 96%
+}
