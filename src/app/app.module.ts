@@ -45,7 +45,8 @@ import { CodesComponent } from './components/codes/codes.component';
 import { DashIndexComponent } from './dash-index/dash-index.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import {AuthGuardService} from './services/guards/authGuardService';
-import { DashboardChartsComponent } from './components/dashboard-charts/dashboard-charts.component'
+import { DashboardChartsComponent } from './components/dashboard-charts/dashboard-charts.component';
+import { DateAgoPipe } from './date-ago.pipe'
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import { DashboardChartsComponent } from './components/dashboard-charts/dashboar
     CodesComponent,
     DashIndexComponent,
     DashboardChartsComponent,
+    DateAgoPipe,
   ],
   imports: [
     BrowserModule,

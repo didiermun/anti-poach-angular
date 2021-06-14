@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit,OnDestroy  {
   patrouilles: any[] = [];
   delete!: boolean;
   value!: boolean;
+  date:Date = new Date();
   subscription: any;
   patrouilleQuery!: QueryRef<any>;
   private querySubscription!: Subscription;
@@ -125,6 +126,10 @@ export class HomeComponent implements OnInit,OnDestroy  {
 
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
+  convert(d: string): Date{
+    return new Date(d);
+  }
+  
   ngOnInit(): void {
     this.patrouilleQuery = this.apollo.watchQuery<any>({
       query: GET_PATROUILLES,
@@ -135,7 +140,12 @@ export class HomeComponent implements OnInit,OnDestroy  {
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.patrouilles = data.patrouilles;
+        console.log(data.patrouilles[0].date)
+        // console.log(isoStringToDate(data.patrouilles[0].date))
     },(error) => {
+      if(error.networkError){
+        this.notifier.notify('error','Internet connection problems detected')
+      }
       console.log('error', `${error.message}`);
     });
 

@@ -13,8 +13,8 @@
         <mat-step [stepControl]="firstFormGroup" label="INFORMATIONS DE PATROUILLE">
           <form [formGroup]="firstFormGroup" class="mt-4 grid grid-cols-6 gap-2 mx-4 md:mx-20">
             <mat-form-field appearance="fill" class="col-span-6 md:col-span-3">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-label>Report Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date" [disabled]="disable">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>

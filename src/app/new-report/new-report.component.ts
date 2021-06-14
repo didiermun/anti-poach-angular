@@ -140,6 +140,7 @@ export class NewReportComponent implements OnInit {
   }
 
   valid: boolean = true;
+  disable: boolean = true;
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.fruits.push(event.option.viewValue);
