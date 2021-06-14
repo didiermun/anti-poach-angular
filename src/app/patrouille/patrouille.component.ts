@@ -8,6 +8,7 @@ import { QueryRef,Apollo, gql } from 'apollo-angular';
 import {NewRecordComponent} from '../dialogs/new-record/new-record.component';
 import {LoggedinService} from '../services/loggedin/loggedin.service';
 import {MatSort} from '@angular/material/sort';
+import { NotifierService } from 'angular-notifier';
 
 export interface DialogData {
   animal: string;
@@ -68,9 +69,10 @@ export interface pat{
 })
 
 export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
-
+  private readonly notifier: NotifierService;
  
-  constructor(private logged: LoggedinService,public dialog: MatDialog,private route: ActivatedRoute,private apollo: Apollo) {
+  constructor(notifierService: NotifierService,private logged: LoggedinService,public dialog: MatDialog,private route: ActivatedRoute,private apollo: Apollo) {
+    this.notifier = notifierService;
    }
   loading: boolean = true;
   patrouille: pat = {patrouille:{},records:[]};
@@ -116,6 +118,9 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
         this.dataSource.sort = this.sort;
         this.loading = loading;
     },(error) => {
+      if(error.networkError){
+        this.notifier.notify('error','Internet connection problems detected')
+      }
       console.log('error', `${error.message}`);
     });
       }

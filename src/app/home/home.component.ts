@@ -140,8 +140,6 @@ export class HomeComponent implements OnInit,OnDestroy  {
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.patrouilles = data.patrouilles;
-        console.log(data.patrouilles[0].date)
-        // console.log(isoStringToDate(data.patrouilles[0].date))
     },(error) => {
       if(error.networkError){
         this.notifier.notify('error','Internet connection problems detected')

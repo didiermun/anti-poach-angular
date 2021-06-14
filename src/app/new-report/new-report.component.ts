@@ -4,6 +4,7 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import {StepperOrientation} from '@angular/material/stepper';
 import {Observable} from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { NotifierService } from 'angular-notifier';
 import { gql,Apollo } from 'apollo-angular';
 import { Router} from '@angular/router';
 import {map, startWith} from 'rxjs/operators';
@@ -110,6 +111,7 @@ export class NewReportComponent implements OnInit {
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]> | undefined;
   fruits: string[] = [];
+  private readonly notifier: NotifierService;
   teamLeader: string | undefined;
   allFruits: string[] = ['Didier Munezero', 'Donart Aime', 'Ukwizagira Froincois', 'Healer Gakstital', 'Cyuzuzo Zodiac'];
 
@@ -171,12 +173,16 @@ export class NewReportComponent implements OnInit {
       let response: any = data;
       this.router.navigateByUrl(`/patrouille/${response.newPatrouille.id}`);
     },(error) => {
+      if(error.networkError){
+        this.notifier.notify('error','Internet connection problems detected')
+      }
       console.log('there was an error sending the query', error);
       console.error(error);
     });
   }
   }
-  constructor(private router: Router,private apollo: Apollo,private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
+  constructor(private router: Router,notifierService: NotifierService,private apollo: Apollo,private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
+    this.notifier = notifierService;
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
 
