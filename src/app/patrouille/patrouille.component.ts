@@ -14,7 +14,7 @@ export interface DialogData {
   animal: string;
   name: string;
 }
-const GET_PATROUILLES = gql`
+const GET_PATROUILLE = gql`
   query patrouille($id: ID!) {
     patrouille(id: $id) {
       records{
@@ -103,7 +103,7 @@ export class PatrouilleComponent implements OnDestroy,OnInit,AfterViewInit  {
     this.route.params.subscribe(
       (params: Params) => {
         this.patrouilleQuery = this.apollo.watchQuery<any>({
-          query: GET_PATROUILLES,
+          query: GET_PATROUILLE,
           variables: {
             id: params['patrouilleId'],
           },

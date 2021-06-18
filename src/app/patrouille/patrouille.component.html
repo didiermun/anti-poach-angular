@@ -65,9 +65,12 @@
       <p class="text-center text-2xl px-3">FULL REPORT DETAILS</p>
     </div>
     <div class="grid grid-cols-6 gap-6 mb-4">
-      <div class="col-span-6 sm:col-span-3 lg:col-span-4">
-      <div class="-mt-2 lg:mt-0 bg-white rounded grid grid-cols-6 gap-0">
-           <div class="col-span-6 lg:col-span-3 border-r">
+      <div class="col-span-6">
+      <div class="-mt-2 lg:mt-0 rounded grid grid-cols-6 gap-2">
+           <div class="col-span-6 sm:col-span-3 lg:col-span-2 bg-white rounded">
+            <div class="flex  minLG:col-span-1 px-4 py-1 md:py-2  mt-2 md:mt-0 cursor-pointer  hover:text-[#ff3e00] transition duration-200 ease-in-out border-gray-200">
+              <p class="text-md text-center px-4 text-lg">Base Info</p>
+            </div>
               <div class="flex px-4  minLG:col-span-1 py-1 md:py-2  mt-2 md:mt-0 cursor-pointer transition duration-200 hover:border-[#ff3e00] ease-in-out border-b border-gray-200">
               <p class="font-semibold text-md text-center px-4">Date:</p><p class="rounded  text-center">{{ patrouille.patrouille.date | date:'h:mm a, EEEE MMM d, y'}}</p>
               </div>
@@ -80,11 +83,14 @@
               <div class="flex  minLG:col-span-1 px-4 py-1 md:py-2  mt-2 md:mt-0 cursor-pointer  hover:border-[#ff3e00] transition duration-200 ease-in-out border-b border-gray-200">
               <p class="font-semibold text-md text-center px-4">Composition De la Patrouille:</p><p class="rounded  text-center">{{patrouille.patrouille.composition}}</p>
               </div>
-              <div class="flex  minLG:col-span-1 px-4 py-1 md:py-2  mt-2 md:mt-0 cursor-pointer  hover:border-[#ff3e00] transition duration-200 ease-in-out border-b border-gray-200">
+              <div class="flex  minLG:col-span-1 px-4 py-1 md:py-2  mt-2 md:mt-0 cursor-pointer  hover:border-[#ff3e00] transition duration-200 ease-in-out border-gray-200">
               <p class="font-semibold text-md text-center px-4">Groupe De Gorille:</p><p class="rounded  text-center">{{patrouille.patrouille.family}}</p>
               </div>
             </div>
-            <div class="col-span-6 lg:col-span-3">
+            <div class="col-span-6 sm:col-span-3 lg:col-span-2 bg-white lg:rounded">
+              <div class="flex  minLG:col-span-1 px-4 py-1 md:py-2  mt-2 md:mt-0 cursor-pointer  hover:text-[#ff3e00] transition duration-200 ease-in-out border-gray-200">
+                <p class="text-md text-center px-4 text-lg">Location</p>
+              </div>
               <div class="flex  minLG:col-span-1 px-4 py-1 md:py-2  mt-2 md:mt-0 cursor-pointer  hover:border-[#ff3e00] transition duration-200 ease-in-out border-b border-gray-200">
               <p class="font-semibold text-md text-center px-4">Feuille No:</p><p class="rounded  text-center">{{patrouille.patrouille.feuilleNO}}</p>
               </div>
@@ -95,33 +101,30 @@
                   <p class="font-semibold text-md text-center px-4">Itineraire:</p><p class="rounded  text-center">{{patrouille.patrouille.path}}</p>
               </div>
             </div>
-      </div>
-    </div>
-    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-      <div class="pat-team bg-white">
-          <div class="flex flex-col">
-              <p class="text-center px-4 text-lg cursor-pointer hover:text-[#ff3e00] transition duration-200 ease-in-out py-2">Membres De l' Equipe</p>
-          </div>
-          <div class="w-full  mt-2 px-2 ">
-              <div class=" minLG:col-span-2 flex cursor-pointer hover:border-[#ff3e00] border-b my-2 transition duration-200 ease-in-out md:mb-0 border-gray-200">
-                 <p class="px-2 font-semibold"> Chef d' equipe: </p><p class="text-center px-4">{{patrouille.patrouille.teamLeader}}</p>
+            <div class="col-span-6 sm:col-span-3 lg:col-span-2 rounded bg-white">
+              <div class="flex flex-col">
+                  <p class="text-center px-4 text-lg cursor-pointer hover:text-[#ff3e00] transition duration-200 ease-in-out py-2">Membres De l' Equipe</p>
               </div>
-              <div class="w-full mt-2 px-2 flex hover:border-[#ff3e00] border-b">
-                  <p class="px-2 font-semibold">Noms:</p> 
-                  <div class="">
-                      <span class="block px-4 py-0 " *ngFor="let name of patrouille.patrouille.names"><span class="font-bold text-xl">.</span> {{name}}</span>
+              <div class="w-full  mt-2 px-2 ">
+                  <div class=" minLG:col-span-2 flex cursor-pointer hover:border-[#ff3e00] border-b my-2 transition duration-200 ease-in-out md:mb-0 border-gray-200">
+                     <p class="px-2 font-semibold"> Chef d' equipe: </p><p class="text-center px-4">{{patrouille.patrouille.teamLeader}}</p>
+                  </div>
+                  <div class="w-full mt-2 px-2 flex hover:border-[#ff3e00] border-b">
+                      <p class="px-2 font-semibold">Noms:</p> 
+                      <div class="">
+                          <span class="block px-4 py-0 " *ngFor="let name of patrouille.patrouille.names"><span class="font-bold text-xl">.</span> {{name}}</span>
+                      </div>
                   </div>
               </div>
+              <div class=" minLG:col-span-2 flex cursor-pointer my-2 transition duration-200 ease-in-out md:mb-0 border-gray-200">
+                  <p class="px-2 font-semibold"> Nombre: </p><p class="text-center px-4">{{patrouille.patrouille.nTeamMembers}}</p>
+               </div>
+                  
           </div>
-          <div class=" minLG:col-span-2 flex cursor-pointer my-2 transition duration-200 ease-in-out md:mb-0 border-gray-200">
-              <p class="px-2 font-semibold"> Nombre: </p><p class="text-center px-4">{{patrouille.patrouille.nTeamMembers}}</p>
-           </div>
-              
       </div>
     </div>
-          
   </div>
-  <div class="bg-white mx-2 rounded">
+  <div class="bg-white rounded">
       <div class="flex justify-between">
           <p class="w-1/2 text-center px-2 font-semibold text-lg">Enregistrements</p>
           <div class="w-1/2 grid justify-items-end mb-2 px-3 py-2">
