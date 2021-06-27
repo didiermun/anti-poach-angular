@@ -46,7 +46,7 @@ import { DashIndexComponent } from './components/dash-index/dash-index.component
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import {AuthGuardService} from './services/guards/authGuardService';
 import { DashboardChartsComponent } from './components/dashboard-charts/dashboard-charts.component';
-import { DateAgoPipe } from './date-ago.pipe'
+import { DateAgoPipe } from './pipes/dateAgo/date-ago.pipe'
 @NgModule({
   declarations: [
     AppComponent,
