@@ -15,7 +15,7 @@ export class TopNavComponent implements OnInit {
   user_status: Logged = {loggedin: false,code_level: "USER"};
   subscription: any;
   logout(){
-    localStorage.removeItem('token');
+    localStorage.removeItem('apr_token');
     localStorage.removeItem('code_level');
     this.logged.setLogged(false, "");
     console.log(this.router.url);

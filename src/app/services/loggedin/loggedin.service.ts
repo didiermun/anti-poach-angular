@@ -18,7 +18,7 @@ export interface Logged {
   loggedin: boolean;
   code_level: string;
 }
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('apr_token');
 const code_level = localStorage.getItem('code_level');
 let val:boolean = false;
 let c_l: string = "USER"
@@ -44,7 +44,7 @@ export class LoggedinService {
   private LoggedVal = new BehaviorSubject<Logged>(this.initialToken);
 
   getLogged(): Observable<Logged> {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('apr_token');
     if(!token){
       this.setLogged(false,"");
     }
@@ -57,12 +57,13 @@ export class LoggedinService {
   refetch(): void{
     this.meQuery = this.apollo.watchQuery<any>({
       query: ME,
-      pollInterval: 1000,
+      pollInterval: 0,
     });
     this.querySubscription = this.meQuery
       .valueChanges
       .subscribe(({ data, loading }) => {
         if(!loading){
+          console.log(data);
           if(data.me.code){
             localStorage.setItem('code_level',data.me.code.level);
             this.setLogged(data.me.success,data.me.code.level);
@@ -72,7 +73,11 @@ export class LoggedinService {
           }
       }
       },(error) => {
-        console.log('error', `${error.message}`);
+        console.log(error.graphQLErrors);
+        if(error.graphQLErrors[0]?.extensions?.code == "UNAUTHENTICATED"){
+          localStorage.removeItem('apr_token');
+          console.log("its not logged in")
+        }
       });
   }
 

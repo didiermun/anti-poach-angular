@@ -11,7 +11,7 @@ export class AuthGuardService implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): boolean {
         const level = localStorage.getItem('code_level');
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('apr_token');
         console.log(level);
  
         if (!level || !token)  {
