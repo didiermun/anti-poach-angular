@@ -1,4 +1,4 @@
-import {Patrouille} from '../../types/patrouille'
+import {Patrouille} from '../../../types/patrouille'
 
 import {MatDialog,} from '@angular/material/dialog';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 import { Apollo, QueryRef,gql } from 'apollo-angular';
 import { NotifierService } from 'angular-notifier';
 import {DeletePatrouilleComponent} from '../dialogs/delete-pat/delete-pat.component';
-import {LoggedinService} from '../services/loggedin/loggedin.service';
+import {LoggedinService} from '../../services/loggedin/loggedin.service';
 
 
 

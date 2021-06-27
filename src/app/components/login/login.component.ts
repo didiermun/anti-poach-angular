@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import {LoggedinService} from '../services/loggedin/loggedin.service';
+import {LoggedinService} from '../../services/loggedin/loggedin.service';
 import { Router} from '@angular/router';
 import { Apollo,gql } from 'apollo-angular';
 import { NotifierService } from 'angular-notifier';

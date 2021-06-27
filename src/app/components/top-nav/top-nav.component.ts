@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {LoggedinService,Logged} from '../services/loggedin/loggedin.service';
+import {LoggedinService,Logged} from '../../services/loggedin/loggedin.service';
 
 @Component({
   selector: 'app-top-nav',

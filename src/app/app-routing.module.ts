@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {LoginComponent} from './login/login.component'
-import {HomeComponent} from './home/home.component'
-import { NewReportComponent} from './new-report/new-report.component'
-import {PatrouilleComponent} from './patrouille/patrouille.component'
-import {NotfoundComponent} from  './notfound/notfound.component'
-import {DashboardComponent} from './dashboard/dashboard.component'
-import {ReportsComponent} from './reports/reports.component'
-import {DashIndexComponent} from './dash-index/dash-index.component'
+import {LoginComponent} from './components/login/login.component'
+import {HomeComponent} from './components/home/home.component'
+import { NewReportComponent} from './components/new-report/new-report.component'
+import {PatrouilleComponent} from './components/patrouille/patrouille.component'
+import {NotfoundComponent} from  './components/notfound/notfound.component'
+import {DashboardComponent} from './components/dashboard/dashboard.component'
+import {ReportsComponent} from './components/reports/reports.component'
+import {DashIndexComponent} from './components/dash-index/dash-index.component'
 import {AuthGuardService} from './services/guards/authGuardService'
 
 const routes: Routes = [

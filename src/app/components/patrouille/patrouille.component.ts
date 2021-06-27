@@ -6,7 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { QueryRef,Apollo, gql } from 'apollo-angular';
 import {NewRecordComponent} from '../dialogs/new-record/new-record.component';
-import {LoggedinService} from '../services/loggedin/loggedin.service';
+import {LoggedinService} from '../../services/loggedin/loggedin.service';
 import {MatSort} from '@angular/material/sort';
 import { NotifierService } from 'angular-notifier';
 

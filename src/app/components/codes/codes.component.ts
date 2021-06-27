@@ -5,7 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { Subscription } from 'rxjs';
-import { NewEditComponent } from '../../dialogs/new-edit/new-edit.component';
+import { NewEditComponent } from '../dialogs/new-edit/new-edit.component';
 
 
 const GET_CODES = gql`

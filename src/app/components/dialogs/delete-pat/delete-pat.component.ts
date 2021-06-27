@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {LoggedinService} from '../../services/loggedin/loggedin.service';
+import {LoggedinService} from '../../../services/loggedin/loggedin.service';
 
 @Component({
   selector: 'app-delete-pat',
