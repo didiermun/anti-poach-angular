@@ -10,6 +10,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context';
 const uri = 'https://anti-poaching.herokuapp.com/graphql';
+// const uri = 'http://localhost:9000/graphql';
 
 export function provideApollo(httpLink: HttpLink) {
   const basic = setContext((operation, context) => ({

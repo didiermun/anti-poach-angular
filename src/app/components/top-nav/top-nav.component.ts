@@ -12,7 +12,7 @@ export class TopNavComponent implements OnInit {
   isloggedIn: boolean = false;
   level: string = "";
   isAdmin: boolean = false;
-  user_status: Logged = {loggedin: false,code_level: "USER"};
+  user_status: Logged = {loggedin: false,code_level: ""};
   subscription: any;
   logout(){
     localStorage.removeItem('apr_token');
@@ -31,7 +31,7 @@ export class TopNavComponent implements OnInit {
       res => {
         this.isloggedIn = res.loggedin;
         this.level = res.code_level;
-        this.isAdmin = this.level==="ADMIN";
+        this.isAdmin = this.level=="ADMIN";
       },
       err => {
         console.error(`An error occurred: ${err.message}`);
