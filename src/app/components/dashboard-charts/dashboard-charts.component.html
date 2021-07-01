@@ -1,6 +1,6 @@
 <div class="mt-10">
     <ngx-charts-bar-vertical 
-      [view]="[800,400]"
+      [view]="[(width | async)!,400]"
       [results]="stats"
       [xAxisLabel]="'Months'"
       [legendTitle]="'Month Comparison Chart'"

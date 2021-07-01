@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo, QueryRef,gql } from 'apollo-angular';
 import { Subscription } from 'rxjs';
+import {BreakpointObserver} from '@angular/cdk/layout';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 const GET_STATS = gql`
   query latest_stats {
@@ -19,12 +22,16 @@ const GET_STATS = gql`
 })
 export class DashboardChartsComponent implements OnInit {
   stats: any[] = [];
+  width: Observable<number>;
   statsQuery!: QueryRef<any>;
   loading: boolean = true;
   subscription: any;
   private querySubscription!: Subscription;
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo,breakpointObserver: BreakpointObserver) { 
+    this.width = breakpointObserver.observe('(min-width: 800px)')
+      .pipe(map(({matches}) => matches ? 800 : 400));
+  }
   saleData = [
     { name: "January", value: 40 },
     { name: "February", value: 29 },
