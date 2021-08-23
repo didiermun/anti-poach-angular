@@ -23,7 +23,7 @@
     "@angular/router": "12.2.2",
     "@apollo/client": "3.4.8",
     "@ngneat/tailwind": "7.0.3",
-    "@swimlane/ngx-charts": "18.0.1",
+    "@swimlane/ngx-charts": "19.0.0",
     "angular-notifier": "9.1.0",
     "apollo-angular": "2.6.0",
     "apollo-angular-link-http": "1.11.0",
