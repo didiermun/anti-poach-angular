@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
         this.notifier.notify('error','Code not found');
       }
     },(error) => {
+      console.log(error);
       if(error.networkError){
         this.notifier.notify('error','Internet connection problems detected')
       }else{
